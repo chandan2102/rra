@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>RRA</title>
-	<link rel="icon" href="images/rra2.png" type="image/png" sizes="16x16">
+	<link rel="icon" href="images/rra-logo.png" type="image/png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" href="style.css??ver.0.0.1"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -49,7 +49,6 @@
 				}
 		       	else
 		       		$("#phh12Container").empty();
-		       		/*$("#phh12Container").hide(1000);*/
 		   	});
 
 
@@ -63,7 +62,6 @@
 				}
 		       	else
 		       		$("#phh60Container").empty();
-	       		/*$("#phh12Container").hide(1000);*/
 	   		});
 
 	   		$("input[name$='hPS60']").change(function() {
@@ -76,7 +74,6 @@
 				}
 		       	else
 		       		$("#hPS60Container").empty();
-	       		/*$("#phh12Container").hide(1000);*/
 	   		});
 
 
@@ -92,7 +89,7 @@
 	   																	$("#btnAdd").show(1000);
 																	};
 
-			document.getElementById("addMore").onclick = (function() {
+			/*document.getElementById("addMore").onclick = (function() {
 	       		var val = $(this).val();
 		       	if(val > 0){
 		       		var $container = $("#hPS60Container");      		
@@ -102,15 +99,25 @@
 				}
 		       	else
 		       		$("#hPS60Container").empty();
-	       		/*$("#phh12Container").hide(1000);*/
+	   		});*/
+
+
+			document.getElementById("btnMore").onclick = (function() {
+	       		var $container = $("#admissionContainer");
+	       		var dayNum = $container.find("div.row").length;
+	       		dayNum +=2;
+	       		//console.log("Day Number = "+dayNum);
+	       		$container.append('<div class="row"><h4>On Day ' + dayNum + ' of Admission</h4><div class="col-60"><label for="dor">Symptoms identified</label></div><div class="col-40"><input type="text" name="dor"><br></div><div class="col-60"><label for="dor">Possible other symptoms</label></div><div class="col-40"><input type="text" name="dor"><br></div><div class="col-60"><label for="dor">Diagnostic tests performed</label></div><div class="col-40"><input type="text" name="dor"><br></div></div>');      		
 	   		});
+
+
 
 		});
 	</script>
 <body>
 	<div class="wrapper">
 		<div id="home">
-			<img id="logo" src="images/rra2.png" alt="Home">
+			<img id="logo" src="images/rra-logo.png" alt="Home">
 		</div>
 
 		<div id="main">
@@ -365,67 +372,84 @@
 				<div id="DoA">
 					<h3>Date Of Admission</h3>
 					<div class="row">
-						<label for="doa">Date Of Admission</label>
-						<input type="date" name="doa"><br>	
-					</div>
+						<div class="col-50">
+							<label for="doa">Date Of Admission</label>
+						</div>
+						<div class="col-50">
+							<input type="date" name="doa"><br>
+						</div>
+					</div>	
 				</div>
 				<br>
 				<div id="DoR">
 					<h3>Date Of Release</h3>
 					<div class="row">
-						<label for="dor">Date Of Release</label>
-						<input type="date" name="dor"><br>	
+						<div class="col-50">
+							<label for="dor">Date Of Release</label>
+						</div>
+						<div class="col-50">
+							<input type="date" name="dor"><br>
+						</div>	
 					</div>
 				</div>
 				<br>
 				<div id="AoA">
 					<h3>Analysis of Admission</h3>
 					<div class="row">
-						<label for="pc">Primary Cause :</label>
-						<input list="causes" name="pc"><br>
-						<datalist id="causes">
-							<option value="Myocardial Infarction">
-							<option value="Congestive Heart Failure">
-							<option value="Peripheral Vascular Disease">
-							<option value="Cerebrovascular disease">
-							<option value="Hemiplegia or Paraplegia">
-							<option value="Dementia">
-							<option value="Chronic Pulmonary disease">
-							<option value="Rheumatologic disease">
-							<option value="Peptic Ulcer disease">
-							<option value="Diabetes without chronic complications">
-							<option value="Diabetes with chronic complications">
-							<option value="Renal disease">
-							<option value="Any malignancy, including leukaemia and lymphoma">
-							<option value="Metastatic solid tumour">
-							<option value="Mild Liver disease">
-							<option value="Moderate or severe Liver disease">
-							<option value="AIDS/HIV">
-						</datalist>	
+						<div class="col-50">
+							<label for="pc">Primary Cause :</label>
+						</div>
+						<div class="col-50">
+							<input list="causes1" name="pc"><br>
+							<datalist id="causes1">
+								<option value="Myocardial Infarction">
+								<option value="Congestive Heart Failure">
+								<option value="Peripheral Vascular Disease">
+								<option value="Cerebrovascular disease">
+								<option value="Hemiplegia or Paraplegia">
+								<option value="Dementia">
+								<option value="Chronic Pulmonary disease">
+								<option value="Rheumatologic disease">
+								<option value="Peptic Ulcer disease">
+								<option value="Diabetes without chronic complications">
+								<option value="Diabetes with chronic complications">
+								<option value="Renal disease">
+								<option value="Any malignancy, including leukaemia and lymphoma">
+								<option value="Metastatic solid tumour">
+								<option value="Mild Liver disease">
+								<option value="Moderate or severe Liver disease">
+								<option value="AIDS/HIV">
+							</datalist>
+						</div>
+							
 					</div>
 					<input id="btnAdd" type="button" value="Add More" />
 					<div class="row" id="secondaryCause" style="display:none;">
-						<label for="sc">Secondary Cause :</label>
-						<input list="causes" name="sc"><br>
-						<datalist id="causes">
-							<option value="Myocardial Infarction">
-							<option value="Congestive Heart Failure">
-							<option value="Peripheral Vascular Disease">
-							<option value="Cerebrovascular disease">
-							<option value="Hemiplegia or Paraplegia">
-							<option value="Dementia">
-							<option value="Chronic Pulmonary disease">
-							<option value="Rheumatologic disease">
-							<option value="Peptic Ulcer disease">
-							<option value="Diabetes without chronic complications">
-							<option value="Diabetes with chronic complications">
-							<option value="Renal disease">
-							<option value="Any malignancy, including leukaemia and lymphoma">
-							<option value="Metastatic solid tumour">
-							<option value="Mild Liver disease">
-							<option value="Moderate or severe Liver disease">
-							<option value="AIDS/HIV">
-						</datalist>
+						<div class="col-50">
+							<label for="sc">Secondary Cause :</label>
+						</div>
+						<div class="col-50">
+							<input list="causes2" name="sc"><br>
+							<datalist id="causes2">
+								<option value="Myocardial Infarction">
+								<option value="Congestive Heart Failure">
+								<option value="Peripheral Vascular Disease">
+								<option value="Cerebrovascular disease">
+								<option value="Hemiplegia or Paraplegia">
+								<option value="Dementia">
+								<option value="Chronic Pulmonary disease">
+								<option value="Rheumatologic disease">
+								<option value="Peptic Ulcer disease">
+								<option value="Diabetes without chronic complications">
+								<option value="Diabetes with chronic complications">
+								<option value="Renal disease">
+								<option value="Any malignancy, including leukaemia and lymphoma">
+								<option value="Metastatic solid tumour">
+								<option value="Mild Liver disease">
+								<option value="Moderate or severe Liver disease">
+								<option value="AIDS/HIV">
+							</datalist>
+						</div>
 						<input id="btnRemove" type="button" value="Remove" />
 					</div>
 				</div>
@@ -434,52 +458,162 @@
 					<h3>Vital information</h3>
 
 					<h4>On Day 1 of Admission</h4>
-
-					<div class="col-60">
-						<label for="dor">Predicted symptoms identified by doctors</label>
-					</div>
-					<div class="col-40">
-						<input type="text" name="dor"><br>
-					</div>
-
-					<div class="col-60">
-						<label for="dor">Medications prescribed</label>
-					</div>
-					<div class="col-40">
-						<input type="text" name="dor"><br>
-					</div>
-
-					<div class="col-60">
-						<label for="dor">Diagnostic tests performed</label>
-					</div>
-					<div class="col-40">
-						<input type="text" name="dor"><br>
-					</div>
-
-					<div id="">
-						<h4>On Day 2 of Admission</h4>
-						<div class="row">
-							<label for="dor">Symptoms identified</label>
-							<input type="text" name="dor"><br>	
+					<div>
+						<div class="col-60">
+							<label for="dor">Predicted symptoms identified by doctors</label>
 						</div>
-						<div class="row">
-							<label for="dor">Possible other symptoms</label>
-							<input type="text" name="dor"><br>	
+						<div class="col-40">
+							<input type="text" name="dor"><br>
 						</div>
-						<div class="row">
+
+						<div class="col-60">
+							<label for="dor">Medications prescribed</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="dor"><br>
+						</div>
+
+						<div class="col-60">
 							<label for="dor">Diagnostic tests performed</label>
-							<input type="text" name="dor"><br>	
+						</div>
+						<div class="col-40">
+							<input type="text" name="dor"><br>
 						</div>
 					</div>
-					<input id="addMore" type="button" value="Add More" />
 
+					<div id="admissionContainer" class="desc">
+						
+						<div class="row">
+							<h4>On Day 2 of Admission</h4>
+							<div class="col-60">
+								<label for="dor">Symptoms identified</label>
+							</div>
+							<div class="col-40">
+								<input type="text" name="dor"><br>
+							</div>
+
+							<div class="col-60">
+								<label for="dor">Possible other symptoms</label>
+							</div>
+							<div class="col-40">
+								<input type="text" name="dor"><br>
+							</div>
+
+							<div class="col-60">
+								<label for="dor">Diagnostic tests performed</label>
+							</div>
+							<div class="col-40">
+								<input type="text" name="dor"><br>
+							</div>
+						</div>
+					</div>
+
+					<input id="btnMore" type="button" value="Add More" />
+
+					<h4>On Day 'n' (Day Before Release)</h4>
+						<div class="row">
+							<div class="col-60">
+								<label for="stat1">Symptoms arrested</label>
+							</div>
+							<div class="col-40">
+								<input list="statuses1" name="stat1"><br>
+								<datalist id="statuses1">
+									<option value="Completely cured">
+									<option value="Satisfactory level cured">
+									<option value="Somewhat under control">
+								</datalist>
+							</div>	
+						</div>
+
+						<div class="row">
+							<div class="col-60">
+								<label for="stat2">Possible other symptoms arrested</label>
+							</div>
+							<div class="col-40">
+								<input list="statuses2" name="stat2"><br>
+								<datalist id="statuses2">
+									<option value="Completely cured">
+									<option value="Satisfactory level cured">
+									<option value="Somewhat under control">
+								</datalist>
+							</div>	
+						</div>
+
+						<div class="row">
+							<div class="col-60">
+								<label for="dor">Diagnostic tests performed</label>
+							</div>
+							<div class="col-40">
+								<input type="text" name="dor"><br>
+							</div>
+						</div>
 				</div>
 				<br>
 				<div id="DRA">
 					<h3>Discharge Report Analysis</h3>
 					<div class="row">
-						<label for="dor">Date Of Release</label>
-						<input type="text" name="dor"><br>	
+						<div class="col-60">
+							<label for="TC">Final Diagnosis:</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="TC"><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-60">
+							<label for="TC">Procedures:</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="TC"><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-60">
+							<label for="TC">History of Present Illness:</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="TC"><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-60">
+							<label for="TC">Laboratory/Data:</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="TC"><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-60">
+							<label for="TC">Discharge Medications :</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="TC"><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-60">
+							<label for="TC">No. of Medicines to be taken per day:</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="TC"><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-60">
+							<label for="TC">Discharge Instructions:</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="TC"><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-60">
+							<label for="TC">Follow up Appointments :</label>
+						</div>
+						<div class="col-40">
+							<input type="text" name="TC"><br>
+						</div>
 					</div>
 				</div>
 			</div> <!--content div close -->

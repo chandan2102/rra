@@ -140,7 +140,7 @@
     border-radius: 10px;
 }
 
-#pInfo, #pVInfo, #pHH, #hPS, #DoA, #DoR, #AoA, #VI {
+#pInfo, #pVInfo, #pHH, #hPS, #DoA, #DoR {
 	width:350px;
 	display:inline-block;
 	border: 1px solid gray;
@@ -149,8 +149,8 @@
     border-radius: 5px; 
 }
 
-#VI, #DRA {
-	width:550px;
+#AoA, #VI, #DRA {
+	width:540px;
 	display:inline-block;
 	border: 1px solid gray;
 	margin: 10px 5px;
