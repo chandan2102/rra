@@ -1,0 +1,193 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src:  url('fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+  font-family: Rubik;
+  src:  url('fonts/Rubik-Regular.ttf');
+}
+
+@font-face {
+  font-family: Nunito;
+  src:  url('fonts/Nunito-Regular.ttf');
+}
+
+.wrapper{
+	height: auto;
+	width: 100%;
+	background: linear-gradient(300deg, #F896FB 5%, #D2B0FA 30%, #89E4F9 100%);
+
+	padding-bottom: 747px; 
+	overflow: hidden;
+}
+
+#home{
+	height:40px;
+	width:100%;
+	padding: 20px 0px;
+	border: 0px solid red;
+}
+
+#logo{
+	height: 60px;
+	width: 66px;
+	padding-left: 1.4em;
+}
+
+#main{
+	background-color: white;
+	width: 1170px;
+	height:auto;
+	border-radius:15px;
+	margin: 0 auto;
+	padding-bottom: 7px;
+}
+
+#header{
+	width: 400px;
+	padding: 50px 0px 30px 25px;
+
+	font-family: 'Montserrat', sans-serif;
+	font-size: 600;
+	letter-spacing: 5px;
+	color: lightgrey;
+	border: 0px solid red;
+	
+}
+
+#header-text-container{
+	height: 5px;
+	border: 1px solid #ffffffff;
+
+	box-sizing: border-box;
+	padding-left: 0px;
+	text-align: center;
+}
+
+#head1{
+	width: 142px;
+    margin-top: -60px;
+    margin-left: 396px;
+	margin-bottom: 0px;
+
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	font-weight: 900;
+	
+	letter-spacing: 4px;
+	color: lightgrey;
+
+	display: block;
+	border: 0px solid red;
+}
+
+#head2{
+	height: auto; 
+	width: 100%; 
+	margin-top: -45px;
+	
+	display: block;
+	border: 0px solid red;	
+}
+
+#r{
+	background: -webkit-linear-gradient(92deg, #F896FD 33%, #D2B0FA 48%, #89E4F8 100%);
+
+	background-clip: text;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	  
+	-moz-text-fill-color: transparent;
+	-webkit-text-fill-color: transparent;
+
+
+	font-size: 110px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+
+	border: 0px solid gold;
+	display: inline;
+}
+
+#eadmission{
+	margin: 0px 0px 0px 5px;
+	font-variant: small-caps;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 75px;
+	letter-spacing: 5px;
+	color: #dcdcdc;
+
+	display: inline;
+	border: 0px solid green;
+}
+
+#content{
+	background-color: lightblue;
+	height: auto;
+    width: 98%;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-family: 'Rubik', sans-serif;
+    padding: 0px 5px;
+    border-radius: 10px;
+}
+
+#pInfo, #pVInfo, #pHH, #hPS, #DoA, #DoR, #AoA, #VI {
+	width:350px;
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px; 
+}
+
+#VI, #DRA {
+	width:550px;
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px; 
+}
+
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+h3, h4{
+	padding: 5px 0px;
+}
+
+.col-50 {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+}
+
+.col-60 {
+    float: left;
+    width: 60%;
+    margin-top: 6px;
+}
+.col-40 {
+    float: left;
+    width: 40%;
+    margin-top: 6px;
+}
