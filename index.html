@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RRA</title>
+	<title>Readmission Risk Analysis</title>
 	<link rel="icon" href="images/rra-logo.png" type="image/png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" href="style.css??ver.0.0.1"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -77,7 +77,7 @@
 	   		});
 
 
-			document.getElementById("btnAdd").onclick = function () { 
+/*			document.getElementById("btnAdd").onclick = function () { 
 																		$("#btnAdd").hide(1000);
 	   																	$("#secondaryCause").show(1000);
 	   																	$("#btnRemove").show(1000);
@@ -87,19 +87,7 @@
 																		$("#btnRemove").hide(1000);
 	   																	$("#secondaryCause").hide(1000);
 	   																	$("#btnAdd").show(1000);
-																	};
-
-			/*document.getElementById("addMore").onclick = (function() {
-	       		var val = $(this).val();
-		       	if(val > 0){
-		       		var $container = $("#hPS60Container");      		
-		       		for(var i=1;i<=val;i++)
-		       		$container.append('<label for="hPS60date ' + $container.children().length + 1 + '">Month :</label><input type="month" id="hPS60date ' + $container.children().length + 1 + '"><br>');
-					$("#hPS60Container").show(1000);
-				}
-		       	else
-		       		$("#hPS60Container").empty();
-	   		});*/
+																	};*/
 
 
 			document.getElementById("btnMore").onclick = (function() {
@@ -111,6 +99,16 @@
 	   		});
 
 
+			$('#end_date').change(function() {
+				var start = $('#start_date').val();
+				var end = $('#end_date').val();
+				var diff =  Math.floor(( Date.parse(end) - Date.parse(start) ) / 86400000);
+				diff+=1;
+				console.log("diff="+diff);
+				
+				document.getElementById("lenOfStay").textContent = diff;
+	   		});
+		
 
 		});
 	</script>
@@ -203,8 +201,8 @@
 					<div id="habits">
 						<div class=row>
 							<label for="smoker">Smoker ? </label>
-								<input type="radio" name="smoker" value="Y"> Yes
-								<input type="radio" name="smoker" value="N"> No
+								<input type="radio" name="smoker" value="Y">Yes</input>
+								<input type="radio" name="smoker" value="N">No</input>
 							<div id="smokerDesc" class="desc" style="display: none;">
 								<div class="col-50">
 									<label for="smokeYears">For how many years ?</label>
@@ -336,7 +334,7 @@
 				<div id="pHH">
 					<h3>Past Hospitalization History</h3>
 					<div class=row>
-						<label for="phh12">How many times in last 6 months ?</label>
+						<label for="phh12">How many times in last 12 months ?</label>
 						<input type="number" name="phh12" value="" min="0" max="6">
 						
 						<div id="phh12Container" class="desc" style="display: none;">
@@ -370,90 +368,179 @@
 					</div>
 				</div>
 				<br>
-				<div id="DoA">
-					<h3>Date Of Admission</h3>
-					<div class="row">
-						<div class="col-50">
-							<label for="doa">Date Of Admission</label>
+				<!-- LACE BLOCK OPEN -->
+				<div name="LACE">
+					<div id="lace">
+						<h2>LACE : <span id="laceScore">#</span></h2>
+						<div id="L">
+							<h3>Length of Stay : <span id="lenOfStay">#</span></h3>
+							<div class="row">
+								<div class="col-50">
+									<label for="doa">Date Of Admission</label>
+								</div>
+								<div class="col-50">
+									<input type="date" name="doa" id="start_date"><br>
+								</div>
+							</div>	
+							<div class="row">
+								<div class="col-50">
+									<label for="dor">Date Of Release</label>
+								</div>
+								<div class="col-50">
+									<input type="date" name="dor" id="end_date"><br>
+								</div>	
+							</div>
 						</div>
-						<div class="col-50">
-							<input type="date" name="doa"><br>
+						<div id="A">
+							<h3>Acuity of Admission : <span id="acuity">#</span></h3>
+							<div class="row">
+								<div class="col-60">
+									<label>Admitted via Emergency Department ?</label>
+								</div>
+								<div class="col-40">
+									<input type="radio" name="yes_no">Yes</input>
+									<input type="radio" name="yes_no">No</input>
+								</div>
+							</div>	
 						</div>
-					</div>	
-				</div>
-				<br>
-				<div id="DoR">
-					<h3>Date Of Release</h3>
-					<div class="row">
-						<div class="col-50">
-							<label for="dor">Date Of Release</label>
+						<br>
+						<div id="C">
+							<h3>Comorbidities - Analysis of Admission : <span id="comorb">#</span></h3>
+							<div class="row">
+								<div class="col-40">
+									<label><strong>Primary Causes :</strong></label>
+								</div>
+								<div class="col-60">
+									<div class="low" style="color:green">
+										<input type="checkbox" name="causes" value="Myocardial Infarction">Myocardial Infarction<br>
+										<input type="checkbox" name="causes" value="Congestive Heart failure">Congestive Heart failure<br>
+										<input type="checkbox" name="causes" value="Peripheral Vascular disease">Peripheral Vascular disease<br>
+			  							<input type="checkbox" name="causes" value="Cerebrovascular disease">Cerebrovascular disease<br>
+			  							<input type="checkbox" name="causes" value="Dementia">Dementia<br>
+			  							<input type="checkbox" name="causes" value="Chronic Obstructive Pulmonary disease">Chronic Obstructive Pulmonary disease<br>
+			  							<input type="checkbox" name="causes" value="Connective Tissue Disease">Connective Tissue Disease<br>
+			  							<input type="checkbox" name="causes" value="Peptic Ulcer disease">Peptic Ulcer Disease<br>
+			  							<input type="checkbox" name="causes" value="Mild Liver disease">Mild Liver disease<br>
+			  							<input type="checkbox" name="causes" value="Diabetes (without complications)">Diabetes (without complications)<br>
+		  							</div>
+		  							<div class="moderate" style="color:blue">
+			  							<input type="checkbox" name="causes" value="Hemiplegia">Hemiplegia<br>
+			  							<input type="checkbox" name="causes" value="Moderate/Severe Renal disease">Moderate/Severe Renal disease<br>
+			  							<input type="checkbox" name="causes" value="Diabetes (With Organ damage)">Diabetes (With Organ damage)<br>
+			  							<input type="checkbox" name="causes" value="Any Tumor (within last 5 years)">Tumor like Lymphoma or Leukemia<br>
+			  							<input type="checkbox" name="causes" value="Lymphoma">Lymphoma<br>
+			  							<input type="checkbox" name="causes" value="Leukemia">Leukemia<br>
+		  							</div>
+		  							<div class="major" style="color:orange">
+		  								<input type="checkbox" name="causes" value="Moderate/Severe Liver disease">Moderate/Severe Liver disease<br>
+		  							</div>
+		  							<div class="critical" style="color:red">
+			  							<input type="checkbox" name="causes" value="Metastatic solid tumour">Metastatic solid tumour<br>
+			  							<input type="checkbox" name="causes" value="AIDS/HIV">AIDS/HIV<br>
+		  							</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-50">
-							<input type="date" name="dor"><br>
+						<div id="E">
+							<h3>Emergency Department visits : </strong><span id="emer">#</span></h3>
+							<div class="row">
+								<div class="col-60">
+									<label for="dor">Emergency Department visits (6 months)</label>
+								</div>
+								<div class="col-40">
+										<input type="number" name="dor"><br>
+								</div>
+							</div>
 						</div>	
 					</div>
-				</div>
-				<br>
-				<div id="AoA">
-					<h3>Analysis of Admission</h3>
-					<div class="row">
-						<div class="col-50">
-							<label for="pc">Primary Cause :</label>
+				</div> 
+				<!-- LACE BLOCK CLOSE -->
+				<!-- HOSPITAL BLOCK START -->
+				<div>
+					<div id="hospital">
+						<h2>HOSPITAL : </strong><span id="hospitalScore">#</span></h2>
+						<div id="H">
+							<h3>Haemoglobin Level : </h3>
+							<div class="row">
+								<div class="col-50">
+									<label for="doa">Haemoglobin Level @ Discharge</label>
+								</div>
+								<div class="col-50">
+									<input type="text" name="doa" id="start_date"><span style="margin-left:10px;">g/l</span><br>
+								</div>
+							</div>	
 						</div>
-						<div class="col-50">
-							<input list="causes1" name="pc"><br>
-							<datalist id="causes1">
-								<option value="Myocardial Infarction">
-								<option value="Congestive Heart Failure">
-								<option value="Peripheral Vascular Disease">
-								<option value="Cerebrovascular disease">
-								<option value="Hemiplegia or Paraplegia">
-								<option value="Dementia">
-								<option value="Chronic Pulmonary disease">
-								<option value="Rheumatologic disease">
-								<option value="Peptic Ulcer disease">
-								<option value="Diabetes without chronic complications">
-								<option value="Diabetes with chronic complications">
-								<option value="Renal disease">
-								<option value="Any malignancy, including leukaemia and lymphoma">
-								<option value="Metastatic solid tumour">
-								<option value="Mild Liver disease">
-								<option value="Moderate or severe Liver disease">
-								<option value="AIDS/HIV">
-							</datalist>
+						<div id="O">
+							<h3>Oncology Service : </h3>
+							<div class="row">
+								<div class="col-50">
+									<label for="doa">Oncology Service before Discharge</label>
+								</div>
+								<div class="col-50">
+									<input type="radio" name="yes_no">Yes</input>
+									<input type="radio" name="yes_no">No</input>
+								</div>
+							</div>	
 						</div>
-							
+						<div id="S">
+							<h3>Sodium Level : </h3>
+							<div class="row">
+								<div class="col-50">
+									<label for="doa">Sodium Level @ Discharge</label>
+								</div>
+								<div class="col-50">
+									<input type="text" name="doa" id="start_date"><span style="margin-left:10px;">mmol/l</span><br>
+								</div>
+							</div>	
+						</div>
+						<div id="P">
+							<h3>Procedure : </h3>
+							<div class="row">
+								<div class="col-65">
+									<label for="doa">Procedures during the index hospitalisation</label>
+								</div>
+								<div class="col-35">
+									<input type="text" name="doa" id="start_date"><br>
+								</div>
+							</div>	
+						</div>
+						<div id="IT" style="background:springgreen">
+							<h3>Index Admission Type : </h3>
+							<div class="row">
+								<div class="col-65">
+									<label>Admitted via Emergency Department ?</label>
+								</div>
+								<div class="col-35">
+									<input type="radio" name="yes_no">Yes</input>
+									<input type="radio" name="yes_no">No</input>
+								</div>
+							</div>	
+						</div>
+						<div id="A" style="background:springgreen">
+							<h3>Admission History : </h3>
+							<div class="row">
+								<div class="col-65">
+									<label for="dor">Number of hospitalizations (12 months)</label>
+								</div>
+								<div class="col-35"">
+										<input type="number" name="dor" readonly="" placeholder="Autoload from PHH"><br>
+								</div>
+							</div>	
+						</div>
+						<div id="L" style="background:springgreen">
+							<h3>Length of Stay : </h3>
+							<div class="row">
+								<div class="col-65">
+									<label for="dor">Length of Stay : </label>
+								</div>
+								<div class="col-35">
+										<input type="number" name="dor" readonly="" placeholder="Autoload from LACE"><br>
+								</div>
+							</div>	
+						</div>
 					</div>
-					<input id="btnAdd" type="button" value="Add More" />
-					<div class="row" id="secondaryCause" style="display:none;">
-						<div class="col-50">
-							<label for="sc">Secondary Cause :</label>
-						</div>
-						<div class="col-50">
-							<input list="causes2" name="sc"><br>
-							<datalist id="causes2">
-								<option value="Myocardial Infarction">
-								<option value="Congestive Heart Failure">
-								<option value="Peripheral Vascular Disease">
-								<option value="Cerebrovascular disease">
-								<option value="Hemiplegia or Paraplegia">
-								<option value="Dementia">
-								<option value="Chronic Pulmonary disease">
-								<option value="Rheumatologic disease">
-								<option value="Peptic Ulcer disease">
-								<option value="Diabetes without chronic complications">
-								<option value="Diabetes with chronic complications">
-								<option value="Renal disease">
-								<option value="Any malignancy, including leukaemia and lymphoma">
-								<option value="Metastatic solid tumour">
-								<option value="Mild Liver disease">
-								<option value="Moderate or severe Liver disease">
-								<option value="AIDS/HIV">
-							</datalist>
-						</div>
-						<input id="btnRemove" type="button" value="Remove" />
-					</div>
 				</div>
+				<!-- HOSPITAL BLOCK END -->
 				<br>
 				<div id="VI">
 					<h3>Vital information</h3>
@@ -467,12 +554,12 @@
 							<input type="text" name="dor"><br>
 						</div>
 
-						<div class="col-60">
+						<!-- <div class="col-60">
 							<label for="dor">Medications prescribed</label>
 						</div>
 						<div class="col-40">
 							<input type="text" name="dor"><br>
-						</div>
+						</div> -->
 
 						<div class="col-60">
 							<label for="dor">Diagnostic tests performed</label>

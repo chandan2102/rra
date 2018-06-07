@@ -18,6 +18,22 @@
   src:  url('fonts/Nunito-Regular.ttf');
 }
 
+#first-row{
+	width: 900px;
+	height: auto;
+
+	border: 0px solid red;	
+	margin: 10px auto;
+}
+
+#second-row{
+	width: 900px;
+	height: 300px;
+
+	border: 0px solid red;	
+	margin: 10px auto;	
+}
+
 .wrapper{
 	height: auto;
 	width: 100%;
@@ -140,7 +156,7 @@
     border-radius: 10px;
 }
 
-#pInfo, #pVInfo, #pHH, #hPS, #DoA, #DoR {
+#pInfo, #pVInfo, #pHH, #hPS {
 	width:350px;
 	display:inline-block;
 	border: 1px solid gray;
@@ -149,7 +165,51 @@
     border-radius: 5px; 
 }
 
-#AoA, #VI, #DRA {
+#lace {
+	width:574px;
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px; 
+}
+
+#L, #A, #C, #E {
+	width:540px;
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px; 
+}
+
+/*.low, .moderate, .major, .critical {
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px;
+}*/
+
+#hospital {
+	width:574px;
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px; 
+}
+
+#H, #O, #S, #P, #IT, #A, #L {
+	width:540px;
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px; 
+}
+
+#VI, #DRA {
 	width:540px;
 	display:inline-block;
 	border: 1px solid gray;
@@ -171,8 +231,16 @@
     margin-top: 6px;
 }
 
-h3, h4{
-	padding: 5px 0px;
+.col-35 {
+    float: left;
+    width: 35%;
+    margin-top: 6px;
+}
+
+.col-65 {
+    float: left;
+    width: 65%;
+    margin-top: 6px;
 }
 
 .col-50 {
@@ -190,4 +258,8 @@ h3, h4{
     float: left;
     width: 40%;
     margin-top: 6px;
+}
+
+h3, h4{
+	padding: 5px 0px;
 }
