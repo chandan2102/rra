@@ -18,33 +18,17 @@
   src:  url('fonts/Nunito-Regular.ttf');
 }
 
-#first-row{
-	width: 900px;
-	height: auto;
-
-	border: 0px solid red;	
-	margin: 10px auto;
-}
-
-#second-row{
-	width: 900px;
-	height: 300px;
-
-	border: 0px solid red;	
-	margin: 10px auto;	
-}
-
 .wrapper{
 	height: auto;
 	width: 100%;
 	background: linear-gradient(300deg, #F896FB 5%, #D2B0FA 30%, #89E4F9 100%);
 
-	padding-bottom: 747px; 
+	padding-bottom: 50px; 
 	overflow: hidden;
 }
 
 #home{
-	height:40px;
+	height:10px;
 	width:100%;
 	padding: 20px 0px;
 	border: 0px solid red;
@@ -58,7 +42,7 @@
 
 #main{
 	background-color: white;
-	width: 1170px;
+	width: 1250px;
 	height:auto;
 	border-radius:15px;
 	margin: 0 auto;
@@ -68,13 +52,6 @@
 #header{
 	width: 400px;
 	padding: 5px 0px;
-
-	/*font-family: 'Montserrat', sans-serif;
-	font-size: 600;
-	letter-spacing: 5px;
-	color: lightgrey;
-	border: 0px solid red;*/
-	
 }
 
 #header-text-container{
@@ -89,7 +66,7 @@
 #head1{
 	width: 142px;
     margin-top: -60px;
-    margin-left: 396px;
+    margin-left: 436px;
 	margin-bottom: 0px;
 
 	text-align: center;
@@ -145,7 +122,7 @@
 	border: 0px solid green;
 }
 
-#content{
+#content {
 	background-color: lightblue;
 	height: auto;
     width: 98%;
@@ -156,43 +133,106 @@
     border-radius: 10px;
 }
 
-#pInfo, #pVInfo, #pHH, #hPS {
-	width:350px;
-	display:inline-block;
-	border: 1px solid gray;
-	margin: 10px 5px;
-    padding: 10px;
-    border-radius: 5px; 
+/*FIRST ROW START*/
+#first-row{
+	width: 1225px;
 }
 
-#lace {
-	width:574px;
-	display:inline-block;
-	border: 1px solid gray;
+#left-block{
+	width: 430px;
+	display: inline-block;
+	vertical-align: top;
+
 	margin: 10px 5px;
     padding: 10px;
-    border-radius: 5px; 
+    border-radius: 5px;
+    border: 1px solid gray;
 }
+#mid-block{
+	width: 280px;
+	display: inline-block;
+	vertical-align: top;
 
-#L, #A, #C, #E {
-	width:540px;
-	display:inline-block;
-	border: 1px solid gray;
 	margin: 10px 5px;
     padding: 10px;
-    border-radius: 5px; 
+    border-radius: 5px;
+    border: 1px solid gray;
 }
 
-/*.low, .moderate, .major, .critical {
+#mid-block input{
+	width: 50px;
+}
+#right-block{
+	width: 410px;
+	display: inline-block;
+	vertical-align: top;
+
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+#right-block input{
+	width: 75px;
+}
+
+#generic, #habits {
+	width:364px;
 	display:inline-block;
 	border: 1px solid gray;
 	margin: 10px 5px;
     padding: 10px;
     border-radius: 5px;
-}*/
+}
 
-#hospital {
-	width:574px;
+#pHH, #hPS {
+	width:377px;
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#phh12Container, #phh60Container{
+	width:236px;
+	display:inline-block;
+	border: 1px solid gray;
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#smokerDesc, #alcoholicDesc, #addictionDesc{
+	width:330px;
+	display:inline-block;
+	/*border: 1px solid gray;*/
+	margin: 5px 10px;
+    /*padding: 10px;*/
+    /*border-radius: 5px;*/
+}
+
+/*FIRST ROW END*/
+/*SECOND ROW START*/
+
+#second-row{
+	width: 1200px;
+}
+
+#lace, #hospital{
+	width: 566px;
+	display: inline-block;
+	vertical-align: top;
+
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+#L, #A, #C, #E {
+	width:540px;
 	display:inline-block;
 	border: 1px solid gray;
 	margin: 10px 5px;
@@ -208,16 +248,27 @@
     padding: 10px;
     border-radius: 5px; 
 }
+/*SECOND ROW END*/
 
-#VI, #DRA {
-	width:540px;
-	display:inline-block;
-	border: 1px solid gray;
-	margin: 10px 5px;
-    padding: 10px;
-    border-radius: 5px; 
+
+/*THIRD ROW START*/
+
+#third-row{
+	width: 1200px;
 }
 
+#VI, #DRA {
+	width: 566px;
+	display: inline-block;
+	vertical-align: top;
+
+	margin: 10px 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+/*THIRD ROW END*/
 
 .col-25 {
     float: left;
@@ -231,10 +282,38 @@
     margin-top: 6px;
 }
 
+.col-20 {
+    float: left;
+    width: 20%;
+    margin-top: 6px;
+}
+
+.col-80 {
+    float: left;
+    width: 80%;
+    margin-top: 6px;
+}
+
+.col-30 {
+    float: left;
+    width: 30%;
+    margin-top: 6px;
+}
+
+.col-70 {
+    float: left;
+    width: 70%;
+    margin-top: 6px;
+}
+
 .col-35 {
     float: left;
     width: 35%;
     margin-top: 6px;
+}
+
+.col-35 input[type="text"]{
+	width: 120px;
 }
 
 .col-65 {

@@ -31,16 +31,18 @@
 		        	$("#addictionDesc").hide(1000);
 		    });
 
-		    $("input[name$='phh12']").click(function() {
+		    /*$("input[name$='phh12']").click(function() {
 		       	var val = $(this).val();
 		       	if(val > 0)
 		       		$("#phh12Desc").show(1000);
 		       	else
 		       		$("#phh12Desc").hide(1000);
-		   	});
+		   	});*/
 
 		   	$("input[name$='phh12']").change(function() {
 	       		var val = $(this).val();
+	       		$("input[name=hospitalVisits]").val(val);
+	       		
 		       	if(val > 0){
 		       		var $container = $("#phh12Container");      		
 		       		for(var i=1;i<=val;i++)
@@ -76,40 +78,314 @@
 		       		$("#hPS60Container").empty();
 	   		});
 
-
-/*			document.getElementById("btnAdd").onclick = function () { 
-																		$("#btnAdd").hide(1000);
-	   																	$("#secondaryCause").show(1000);
-	   																	$("#btnRemove").show(1000);
-																	};
-
-			document.getElementById("btnRemove").onclick = function () { 
-																		$("#btnRemove").hide(1000);
-	   																	$("#secondaryCause").hide(1000);
-	   																	$("#btnAdd").show(1000);
-																	};*/
-
-
 			document.getElementById("btnMore").onclick = (function() {
 	       		var $container = $("#admissionContainer");
 	       		var dayNum = $container.find("div.row").length;
 	       		dayNum +=2;
 	       		//console.log("Day Number = "+dayNum);
-	       		$container.append('<div class="row"><h4>On Day ' + dayNum + ' of Admission</h4><div class="col-60"><label for="dor">Symptoms identified</label></div><div class="col-40"><input type="text" name="dor"><br></div><div class="col-60"><label for="dor">Possible other symptoms</label></div><div class="col-40"><input type="text" name="dor"><br></div><div class="col-60"><label for="dor">Diagnostic tests performed</label></div><div class="col-40"><input type="text" name="dor"><br></div></div>');      		
+	       		$container.append('<div class="row"><h4>On Day ' + dayNum + ' of Admission</h4><div class="col-70"><label for="dor">Symptoms identified</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Possible other symptoms</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Diagnostic tests performed</label></div><div class="col-30"><input type="text" name="dor"><br></div></div>');      		
 	   		});
 
 
-			$('#end_date').change(function() {
+			/*$('#end_date').change(function() {
 				var start = $('#start_date').val();
 				var end = $('#end_date').val();
-				var diff =  Math.floor(( Date.parse(end) - Date.parse(start) ) / 86400000);
-				diff+=1;
-				console.log("diff="+diff);
-				
-				document.getElementById("lenOfStay").textContent = diff;
-	   		});
-		
+				lenOfStay =  Math.floor(( Date.parse(end) - Date.parse(start) ) / 86400000);
+				lenOfStay+=1;
 
+				$("input[name=lenOfVisit]").val(lenOfStay);
+				document.getElementById("lenOfStay").textContent = lenOfStay;
+
+				if(lenOfStay<=3)
+					LACEscore += lenOfStay;
+				else if(lenOfStay>=4 && lenOfStay<=6)
+					LACEscore += 4;
+				else if(lenOfStay>=7 && lenOfStay<=13)
+					LACEscore += 5;
+				else
+					LACEscore += 7;
+				
+				document.getElementById("laceScore").textContent = LACEscore;
+	   		});*/
+
+
+		    /*$("input[name$='AcuityAdmission']").click(function() {
+		        var val = $(this).val();
+		        if(val == "Emergency"){
+		        	LACEscore += 3;
+		        	document.getElementById("laceScore").textContent = LACEscore;
+		        	$(":radio[name=AdmissionType][value=Y]").prop("checked", true);
+		        }
+		        else{
+		        	$(":radio[name=AdmissionType][value=N]").prop("checked", true);
+		        }
+		        	
+		    });*/
+
+		    
+		    //BLOCK TO ALLOW ONLY NUMBER AS INPUT
+		    $("input[name$='phh12']").keydown(function (e) {
+		        // Allow: backspace, delete, tab, escape, enter and .
+		        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+		             // Allow: Ctrl+A, Command+A
+		            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+		             // Allow: home, end, left, right, down, up
+		            (e.keyCode >= 35 && e.keyCode <= 40)) {
+		                 // let it happen, don't do anything
+		                 return;
+		        }
+		        // Ensure that it is a number and stop the keypress
+		        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		            e.preventDefault();
+		        }
+		        $(this).data("old", $(this).val());
+		    });
+
+		    //BLOCK TO ALLOW INPUT RANGE
+			$("input[name$='phh12']").keyup(function () {
+				// Check correct, else revert back to old value.
+				if (parseInt($(this).val()) <= 3 && parseInt($(this).val()) >= 0)
+					;
+				else
+					$(this).val($(this).data("old"));
+			});
+
+
+			//BLOCK TO ALLOW ONLY NUMBER AS INPUT
+		    $("input[name$='phh60']").keydown(function (e) {
+		        // Allow: backspace, delete, tab, escape, enter and .
+		        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+		             // Allow: Ctrl+A, Command+A
+		            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+		             // Allow: home, end, left, right, down, up
+		            (e.keyCode >= 35 && e.keyCode <= 40)) {
+		                 // let it happen, don't do anything
+		                 return;
+		        }
+		        // Ensure that it is a number and stop the keypress
+		        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		            e.preventDefault();
+		        }
+		        $(this).data("old", $(this).val());
+		    });
+
+		    //BLOCK TO ALLOW INPUT RANGE
+			$("input[name$='phh60']").keyup(function () {
+				// Check correct, else revert back to old value.
+				if (parseInt($(this).val()) <= 6 && parseInt($(this).val()) >= 0)
+					;
+				else
+					$(this).val($(this).data("old"));
+			});
+
+			
+			//BLOCK TO ALLOW ONLY NUMBER AS INPUT
+		    $("input[name$='hPS60']").keydown(function (e) {
+		        // Allow: backspace, delete, tab, escape, enter and .
+		        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+		             // Allow: Ctrl+A, Command+A
+		            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+		             // Allow: home, end, left, right, down, up
+		            (e.keyCode >= 35 && e.keyCode <= 40)) {
+		                 // let it happen, don't do anything
+		                 return;
+		        }
+		        // Ensure that it is a number and stop the keypress
+		        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		            e.preventDefault();
+		        }
+		        $(this).data("old", $(this).val());
+		    });
+
+		    //BLOCK TO ALLOW INPUT RANGE
+			$("input[name$='hPS60']").keyup(function () {
+				// Check correct, else revert back to old value.
+				if (parseInt($(this).val()) <= 6 && parseInt($(this).val()) >= 0)
+					;
+				else
+					$(this).val($(this).data("old"));
+			});
+
+			
+			//BLOCK TO ALLOW ONLY NUMBER AS INPUT
+		    $("input[name$='emergencyVisits']").keydown(function (e) {
+		        // Allow: backspace, delete, tab, escape, enter and .
+		        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+		             // Allow: Ctrl+A, Command+A
+		            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+		             // Allow: home, end, left, right, down, up
+		            (e.keyCode >= 35 && e.keyCode <= 40)) {
+		                 // let it happen, don't do anything
+		                 return;
+		        }
+		        // Ensure that it is a number and stop the keypress
+		        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		            e.preventDefault();
+		        }
+		        $(this).data("old", $(this).val());
+		    });
+
+		    //BLOCK TO ALLOW INPUT RANGE
+			$("input[name$='emergencyVisits']").keyup(function () {
+				// Check correct, else revert back to old value.
+				if (parseInt($(this).val()) <= 6 && parseInt($(this).val()) >= 0)
+					;
+				else
+					$(this).val($(this).data("old"));
+			});
+
+
+			var lenOfStay =0;
+			var L = 0;
+			var A = 0;
+			var C = 0;
+			var E = 0;
+			var LACEscore = 0;
+			var HOSPITALscore = 0;
+
+			//MAJOR TASK BLOCK
+		    window.setInterval(function(){
+
+		    	//LENGTH OF STAY
+		    	if( $('#start_date').val() != "" && $('#end_date').val() != "")
+		    	{
+		    		var start = $('#start_date').val();
+					var end = $('#end_date').val();
+					lenOfStay =  Math.floor(( Date.parse(end) - Date.parse(start) ) / 86400000);
+					lenOfStay+=1;
+		    	}
+		    	$("input[name=lenOfVisit]").val(lenOfStay);
+				document.getElementById("lenOfStay").textContent = lenOfStay;
+
+		    	// L VALUE CALCULATION
+		    	if(lenOfStay<=3)
+					L = parseInt(lenOfStay);
+				else if(lenOfStay>=4 && lenOfStay<=6)
+					L = 4;
+				else if(lenOfStay>=7 && lenOfStay<=13)
+					L = 5;
+				else
+					L = 7;
+
+
+		    	//ACUITY AND A CALCULATION
+		    	document.getElementById("acuity").textContent = 0;
+		    	if($(":radio[name=AcuityAdmission]:checked").val() == "Emergency"){
+		    		$(":radio[name=AdmissionType][value=Y]").prop("checked", true);
+		    		A = 3;
+		    		document.getElementById("acuity").textContent = A;
+		    	}
+		    	if($(":radio[name=AcuityAdmission]:checked").val() == "General"){
+		    		$(":radio[name=AdmissionType][value=N]").prop("checked", true);
+		    		A = 0;
+		    		document.getElementById("acuity").textContent = A;
+		    	}
+
+
+		    	// COMORBIDITY VALUE CALCULATION
+		    	var low = 0;
+		    	if ($('input[type=checkbox][id=MI]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=CH]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=PV]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=CV]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=DM]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=PD]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=TD]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=PU]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=ML]').is(':checked') == true) {
+		            low++;
+		        }
+		        if ($('input[type=checkbox][id=DN]').is(':checked') == true) {
+		            low++;
+		        }
+
+		        var mod=0;
+		        if ($('input[type=checkbox][id=HP]').is(':checked') == true) {
+		            mod+=2;
+		        }
+		        if ($('input[type=checkbox][id=RD]').is(':checked') == true) {
+		            mod+=2;
+		        }
+		        if ($('input[type=checkbox][id=DC]').is(':checked') == true) {
+		            mod+=2;
+		        }
+		        if ($('input[type=checkbox][id=AT]').is(':checked') == true) {
+		            mod+=2;
+		        }
+		        if ($('input[type=checkbox][id=LP]').is(':checked') == true) {
+		            mod+=2;
+		        }
+		        if ($('input[type=checkbox][id=LK]').is(':checked') == true) {
+		            mod+=2;
+		        }
+
+		        var maj =0;
+		        if ($('input[type=checkbox][id=SL]').is(':checked') == true) {
+		            maj+=3;
+		        }
+
+		        var crit =0;
+		        if ($('input[type=checkbox][id=MT]').is(':checked') == true) {
+		            crit+=6;
+		        }
+		        if ($('input[type=checkbox][id=AI]').is(':checked') == true) {
+		            crit+=6;
+		        }
+
+		        var comorbidities = parseInt(low+mod+maj+crit);
+		        console.log('comorbidities='+comorbidities);
+		        document.getElementById("comorb").textContent = comorbidities;
+
+		        // C VALUE CALCULATION
+		        if(comorbidities<=3)
+					C = comorbidities;
+				else if(comorbidities>=4)
+					C = 5;
+				
+
+		    	// E VALUE CALCULATION
+		    	var visits = 0;
+		    	if($("input[name$='emergencyVisits']").val() != NaN && $("input[name$='emergencyVisits']").val() != ""){
+		    		visits = parseInt($("input[name$='emergencyVisits']").val());
+		    		document.getElementById("emer").textContent = visits;
+		    	}else{
+		    		/*visits = 0;*/
+		    		document.getElementById("emer").textContent = visits;
+		    	}
+		    	
+		    	if(visits<=3)
+		    		E = visits;
+		    	else if (visits >= 4)
+		    		E = 4;
+
+		    	LACEscore = L+A+C+E;
+		    	console.log('L'+L);
+		    	console.log('A'+A);
+		    	console.log('C'+C);
+		    	console.log('E'+E);
+
+		    	document.getElementById("laceScore").textContent = LACEscore;
+
+
+		    }, 500);
+		    //MAJOR TASK END  	
+		
 		});
 	</script>
 <body>
@@ -130,263 +406,280 @@
 			</div>
 
 			<div id="content">
-				<div id="pInfo">
-					<h3>Patient's' Info</h3>
-					<h4>Generic</h4>
-					<div id="generic">
-						<div class="row">
-							<div class="col-25">
-								<label for="gender">Gender</label>
-							</div>
-							<div class="col-75">
-								<input type="radio" name="gender" value="male"> Male
-								<input type="radio" name="gender" value="female"> Female
-								<input type="radio" name="gender" value="other"> Other<br>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-25">
-								<label for="ethnicity">Ethnicity</label>
-							</div>
-							<div class="col-75">
-								<input list="races" name="ethnicity"><br>
-								<datalist id="races">
-									<option value="Caucasoid (White)">
-									<option value="Negroid (Black)">
-									<option value="Capoid (Bushmen/Hottentots)">
-									<option value="Mongoloid (Oriental/ Amerindian)">
-									<option value="Australoid (Australian Aborigine and Papuan)">
-								</datalist>
-							</div>
-						</div>
+				<div id="first-row">
+					<div id="left-block">
+						<h3>Basic Info</h3>
+							<div id="generic">
+								<h4>Generic</h4>
+								<div class="row">
+									<div class="col-40">
+										<label for="gender">Gender</label>
+									</div>
+									<div class="col-60">
+										<input type="radio" name="gender">Male</input>&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="gender">Female</input>&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="gender">Other</input>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-40">
+										<label for="ethnicity">Ethnicity</label>
+									</div>
+									<div class="col-60">
+										<input list="races" name="ethnicity"><br>
+										<datalist id="races">
+											<option value="Caucasoid (White)">
+											<option value="Negroid (Black)">
+											<option value="Capoid (Bushmen/Hottentots)">
+											<option value="Mongoloid (Oriental/ Amerindian)">
+											<option value="Australoid (Australian Aborigine and Papuan)">
+										</datalist>
+									</div>
+								</div>
 
-						<div class="row">
-							<div class="col-25">
-								<label for="age">Age</label>
-							</div>
-							<div class="col-75">
-								<input type="text" name="age" min="1" max="99"><span style="margin-left:10px;">yr</span><br>
-							</div>
-						</div>
+								<div class="row">
+									<div class="col-40">
+										<label for="age">Age</label>
+									</div>
+									<div class="col-60">
+										<input type="text" name="age" min="1" max="99"><span style="margin-left:10px;">yr</span><br>
+									</div>
+								</div>
 
-						<div class="row">
-							<div class="col-25">
-								<label for="height">Height</label>
-							</div>
-							<div class="col-75">
-								<input type="text" name="height" min="21" max="99"><span style="margin-left:10px;">IN</span><br>
-							</div>
-						</div>
+								<div class="row">
+									<div class="col-40">
+										<label for="height">Height</label>
+									</div>
+									<div class="col-60">
+										<input type="text" name="height" min="21" max="99"><span style="margin-left:10px;">IN</span><br>
+									</div>
+								</div>
 
-						<div class="row">
-							<div class="col-25">
-								<label for="weight">Weight</label>
-							</div>
-							<div class="col-75">
-								<input type="text" name="weight" min="4" max="999"><span style="margin-left:10px;">lb</span><br>
-							</div>
-						</div>
+								<div class="row">
+									<div class="col-40">
+										<label for="weight">Weight</label>
+									</div>
+									<div class="col-60">
+										<input type="text" name="weight" min="4" max="999"><span style="margin-left:10px;">lb</span><br>
+									</div>
+								</div>
 
-						<div class="row">
-							<div class="col-25">
-								<label for="location">Location</label>
+								<div class="row">
+									<div class="col-40">
+										<label for="location">Location</label>
+									</div>
+									<div class="col-60">
+										<input type="text" name="location"><br>
+									</div>
+								</div>
+							</div> <!-- GENERIC CLOSE-->
+							<div id="habits">
+								<h4>Habits</h4>
+								<div class=row>
+									<label for="smoker">Smoker ? </label>
+										<input type="radio" name="smoker" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="smoker" value="N">No</input>						
+									<div id="smokerDesc" class="desc" style="display: none;">
+										<div class="col-50">
+											<label for="smokeYears">For how many years ?</label>
+										</div>
+										<div class="col-50">
+											<input type="text" name="smokeYears"><br>
+										</div>
+										<div class="col-50">
+											<label for="smokeTimes">How many per day ?</label>
+										</div>
+										<div class="col-50">
+											<input type="text" name="smokeTimes"><br>
+										</div> 
+								    </div>
+								</div>
+								<div class=row>
+									<label for="alcoholic">Alcoholic ?</label>
+										<input type="radio" name="alcoholic" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="alcoholic" value="N">No</input>
+									<div id="alcoholicDesc" class="desc" style="display: none;">
+										<div class="col-50">
+											<label for="alcoholYears">For how many years ?</label>
+										</div>
+										<div class="col-50">
+											<input type="text" name="alcoholYears"><br>
+										</div>
+										<div class="col-50">
+											<label for="alcoholTimes">How many per week ?</label>
+										</div>
+										<div class="col-50">
+											<input type="text" name="alcoholTimes"><br>
+										</div>
+								    </div>
+								</div>
+								<div class=row>
+									<label for="addiction" >Addicted ? &nbsp;</label>
+										<input type="radio" name="addiction" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="addiction" value="N">No</input>
+									<div id="addictionDesc" class="desc" style="display: none;">
+										<div class="col-50">
+											<label for="addictionYears">For how many years ?</label>
+										</div>
+										<div class="col-50">
+											<input type="text" name="addictionYears"><br>
+										</div>
+								    </div>
+								</div>
+							</div> <!-- HABITS CLOSE-->
+					</div>
+					<div id="mid-block">
+						<h3>Vital Info</h3>
+							<div class="row">
+								<div class="col-60">
+									<label for="TC">TC</label>
+								</div>
+								<div class="col-40">
+									<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
+								</div>
 							</div>
-							<div class="col-75">
-								<input type="text" name="location"><br>
+							<div class="row">
+								<div class="col-60">
+									<label for="DC">DC</label>
+								</div>
+								<div class="col-40">
+									<input type="text" name="DC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
+								</div>
 							</div>
-						</div>
-					</div>
-					<br>
-					<h4>Habits</h4>
-					<div id="habits">
-						<div class=row>
-							<label for="smoker">Smoker ? </label>
-								<input type="radio" name="smoker" value="Y">Yes</input>
-								<input type="radio" name="smoker" value="N">No</input>
-							<div id="smokerDesc" class="desc" style="display: none;">
-								<div class="col-50">
-									<label for="smokeYears">For how many years ?</label>
+							<div class="row">
+								<div class="col-60">
+									<label for="BP">BP</label>
 								</div>
-								<div class="col-50">
-									<input type="text" name="smokeYears"><br>
+								<div class="col-40">
+									<input type="text" name="BP" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
 								</div>
-								<div class="col-50">
-									<label for="smokeTimes">How many per day ?</label>
+							</div>
+							<div class="row">
+								<div class="col-60">
+									<label for="BS">BS</label>
 								</div>
-								<div class="col-50">
-									<input type="text" name="smokeTimes"><br>
-								</div> 
-						    </div>
-						</div>
-						<div class=row>
-							<label for="alcoholic">Alcoholic ?</label>
-								<input type="radio" name="alcoholic" value="Y"> Yes
-								<input type="radio" name="alcoholic" value="N"> No
-							<div id="alcoholicDesc" class="desc" style="display: none;">
-								<div class="col-50">
-									<label for="alcoholYears">For how many years ?</label>
+								<div class="col-40">
+									<input type="text" name="BS" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
 								</div>
-								<div class="col-50">
-									<input type="text" name="alcoholYears"><br>
+							</div>
+							<div class="row">
+								<div class="col-60">
+									<label for="LF">LF</label>
 								</div>
-								<div class="col-50">
-									<label for="alcoholTimes">How many per week ?</label>
+								<div class="col-40">
+									<input type="text" name="LF" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
 								</div>
-								<div class="col-50">
-									<input type="text" name="alcoholTimes"><br>
+							</div>
+							<div class="row">
+								<div class="col-60">
+									<label for="Urine">Urine</label>
 								</div>
-						    </div>
-						</div>
-						<div class=row>
-							<label for="addiction" >Addicted ? &nbsp;</label>
-								<input type="radio" name="addiction" value="Y"> Yes
-								<input type="radio" name="addiction" value="N"> No
-							<div id="addictionDesc" class="desc" style="display: none;">
-								<div class="col-50">
-									<label for="addictionYears">For how many years ?</label>
+								<div class="col-40">
+									<input type="text" name="Urine" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
 								</div>
-								<div class="col-50">
-									<input type="text" name="addictionYears"><br>
+							</div>
+							<div class="row">
+								<div class="col-60">
+									<label for="Lung">Lung</label>
 								</div>
-						    </div>
-						</div>
-
+								<div class="col-40">
+									<input type="text" name="Lung" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-60">
+									<label for="Lung">Lung</label>
+								</div>
+								<div class="col-40">
+									<input type="text" name="Lung" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-60">
+									<label for="SodiumLevel">Sodium Level</label>
+								</div>
+								<div class="col-40">
+									<input type="text" name="SodiumLevel" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
+								</div>
+							</div>	
 					</div>
-
-				</div>
-				<br>
-				<div id="pVInfo">
-					<h3>Patient's' Vital Info</h3>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">TC</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">DC</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">BP</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">BS</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">LF</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">Urine</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">Lung</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">Heart</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="TC">Sodium Level</label>
-						</div>
-						<div class="col-75">
-							<input type="text" name="TC" min="1" max="99"><span style="margin-left:10px;">xx</span><br>
-						</div>
-					</div>
-				</div>
-				<br>
-				<div id="pHH">
-					<h3>Past Hospitalization History</h3>
-					<div class=row>
-						<label for="phh12">How many times in last 12 months ?</label>
-						<input type="number" name="phh12" value="" min="0" max="6">
-						
-						<div id="phh12Container" class="desc" style="display: none;">
+					<div id="right-block">
+						<div id="pHH">
+							<h3>Past Hospitalization History</h3>
+							<div class=row>
+								<div class="col-80">
+									<label for="phh12">How many times in last 12 months ?</label>
+								</div>
+								<div class="col-20">
+									<input type="text" name="phh12" value="" placeholder="Range 0-3">
+								</div>
+								<div id="phh12Container" class="desc" style="display: none;">
+									
+							    </div>
+							</div>
+							<div class=row>
+								<div class="col-80">
+									<label for="phh60">How many times in last 5 years ?</label>
+								</div>
+								<div class="col-20">
+									<input type="text" name="phh60" value="" placeholder="Range 0-6">
+								</div>
+								<div id="phh60Container" class="desc" style="display: none;">
+									<!-- GENERATED HTML COMES HERE	 -->
+							    </div>
+							</div>
 							
-					    </div>
+						</div>
+						<br>
+						<div id="hPS">
+							<h3>History of Past Surgeries</h3>
+							<div class="row">
+								<div class="col-80">
+									<label for="nature">Nature surgery in last 12 months</label>
+								</div>
+								<div class="col-20">
+									<!-- <input type="text" name="nature"><br> -->
+									<input list="nature" name="ethnicity"><br>
+										<datalist id="nature">
+											<option value="Minor">
+											<option value="Moderate">
+											<option value="Major">
+											<option value="Critical">
+										</datalist>
+								</div>
+							</div>
+							<div class="col-80">
+								<label for="hPS60">Any other surgery in last 5 years ?</label>
+							</div>
+							<div class="col-20">
+								<input type="text" name="hPS60" value="" placeholder="Range 0-6">
+							</div>
+							<div id="hPS60Container" class="desc" style="display: none;">
+								<!-- GENERATED HTML COMES HERE	 -->
+							</div>	
+						</div>
 					</div>
-					<div class=row>
-						<label for="phh60">How many times in last 5 years ?</label>
-						<input type="number" name="phh60" value="" min="0" max="12">
-						
-						<div id="phh60Container" class="desc" style="display: none;">
-							
-					    </div>
-					</div>
-					
-				</div>
-				<br>
-				<div id="hPS">
-					<h3>History of Past Surgeries</h3>
-					<div class="row">
-						<label for="nature">Nature surgery in last 12 months</label>
-						<input type="text" name="nature" style="width:55px;"><br>	
-					</div>
-					<div class=row>
-						<label for="hPS60">Any other surgery in last 5 years ?</label>
-						<input type="number" name="hPS60" value="" min="0" max="12">
-						
-						<div id="hPS60Container" class="desc" style="display: none;">
-							
-					    </div>
-					</div>
-				</div>
-				<br>
-				<!-- LACE BLOCK OPEN -->
-				<div name="LACE">
+				</div> <!-- FIRST ROW CLOSE-->
+
+				<div id="second-row">
+					<!-- LACE BLOCK OPEN -->
 					<div id="lace">
 						<h2>LACE : <span id="laceScore">#</span></h2>
 						<div id="L">
 							<h3>Length of Stay : <span id="lenOfStay">#</span></h3>
 							<div class="row">
-								<div class="col-50">
+								<div class="col-70">
 									<label for="doa">Date Of Admission</label>
 								</div>
-								<div class="col-50">
+								<div class="col-30">
 									<input type="date" name="doa" id="start_date"><br>
 								</div>
 							</div>	
 							<div class="row">
-								<div class="col-50">
+								<div class="col-70">
 									<label for="dor">Date Of Release</label>
 								</div>
-								<div class="col-50">
+								<div class="col-30">
 									<input type="date" name="dor" id="end_date"><br>
 								</div>	
 							</div>
@@ -394,12 +687,12 @@
 						<div id="A">
 							<h3>Acuity of Admission : <span id="acuity">#</span></h3>
 							<div class="row">
-								<div class="col-60">
+								<div class="col-70">
 									<label>Admitted via Emergency Department ?</label>
 								</div>
-								<div class="col-40">
-									<input type="radio" name="yes_no">Yes</input>
-									<input type="radio" name="yes_no">No</input>
+								<div class="col-30">
+									<input type="radio" name="AcuityAdmission" value="Emergency">Yes</input>&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="AcuityAdmission" value="General">No</input>
 								</div>
 							</div>	
 						</div>
@@ -412,31 +705,31 @@
 								</div>
 								<div class="col-60">
 									<div class="low" style="color:green">
-										<input type="checkbox" name="causes" value="Myocardial Infarction">Myocardial Infarction<br>
-										<input type="checkbox" name="causes" value="Congestive Heart failure">Congestive Heart failure<br>
-										<input type="checkbox" name="causes" value="Peripheral Vascular disease">Peripheral Vascular disease<br>
-			  							<input type="checkbox" name="causes" value="Cerebrovascular disease">Cerebrovascular disease<br>
-			  							<input type="checkbox" name="causes" value="Dementia">Dementia<br>
-			  							<input type="checkbox" name="causes" value="Chronic Obstructive Pulmonary disease">Chronic Obstructive Pulmonary disease<br>
-			  							<input type="checkbox" name="causes" value="Connective Tissue Disease">Connective Tissue Disease<br>
-			  							<input type="checkbox" name="causes" value="Peptic Ulcer disease">Peptic Ulcer Disease<br>
-			  							<input type="checkbox" name="causes" value="Mild Liver disease">Mild Liver disease<br>
-			  							<input type="checkbox" name="causes" value="Diabetes (without complications)">Diabetes (without complications)<br>
+										<input type="checkbox" name="causes" id="MI" value="Myocardial Infarction">Myocardial Infarction<br>
+										<input type="checkbox" name="causes" id="CH" value="Congestive Heart Failure">Congestive Heart Failure<br>
+										<input type="checkbox" name="causes" id="PV" value="Peripheral Vascular Disease">Peripheral Vascular Disease<br>
+			  							<input type="checkbox" name="causes" id="CV" value="Cerebro Vascular Disease">Cerebro Vascular Disease<br>
+			  							<input type="checkbox" name="causes" id="DM" value="Dementia">Dementia<br>
+			  							<input type="checkbox" name="causes" id="PD" value="Chronic Obstructive Pulmonary Disease">Chronic Obstructive Pulmonary Disease<br>
+			  							<input type="checkbox" name="causes" id="TD" value="Connective Tissue Disease">Connective Tissue Disease<br>
+			  							<input type="checkbox" name="causes" id="PU" ="Peptic Ulcer Disease">Peptic Ulcer Disease<br>
+			  							<input type="checkbox" name="causes" id="ML" value="Mild Liver Disease">Mild Liver Disease<br>
+			  							<input type="checkbox" name="causes" id="DN" value="Diabetes (without complications)">Diabetes (without complications)<br>
 		  							</div>
 		  							<div class="moderate" style="color:blue">
-			  							<input type="checkbox" name="causes" value="Hemiplegia">Hemiplegia<br>
-			  							<input type="checkbox" name="causes" value="Moderate/Severe Renal disease">Moderate/Severe Renal disease<br>
-			  							<input type="checkbox" name="causes" value="Diabetes (With Organ damage)">Diabetes (With Organ damage)<br>
-			  							<input type="checkbox" name="causes" value="Any Tumor (within last 5 years)">Tumor like Lymphoma or Leukemia<br>
-			  							<input type="checkbox" name="causes" value="Lymphoma">Lymphoma<br>
-			  							<input type="checkbox" name="causes" value="Leukemia">Leukemia<br>
+			  							<input type="checkbox" name="causes" id="HP" value="Hemiplegia">Hemiplegia<br>
+			  							<input type="checkbox" name="causes" id="RD" value="Moderate/Severe Renal Disease">Moderate/Severe Renal Disease<br>
+			  							<input type="checkbox" name="causes" id="DC" value="Diabetes (with organ damage)">Diabetes (with organ damage)<br>
+			  							<input type="checkbox" name="causes" id="AT" value="Any Tumor (within last 5 years)">Any Tumor (within last 5 years)<br>
+			  							<input type="checkbox" name="causes" id="LP" value="Lymphoma">Lymphoma<br>
+			  							<input type="checkbox" name="causes" id="LK" value="Leukemia">Leukemia<br>
 		  							</div>
 		  							<div class="major" style="color:orange">
-		  								<input type="checkbox" name="causes" value="Moderate/Severe Liver disease">Moderate/Severe Liver disease<br>
+		  								<input type="checkbox" name="causes" id="SL" value="Moderate/Severe Liver Disease">Moderate/Severe Liver Disease<br>
 		  							</div>
 		  							<div class="critical" style="color:red">
-			  							<input type="checkbox" name="causes" value="Metastatic solid tumour">Metastatic solid tumour<br>
-			  							<input type="checkbox" name="causes" value="AIDS/HIV">AIDS/HIV<br>
+			  							<input type="checkbox" name="causes" id="MT" ="Metastatic Solid Tumour">Metastatic Solid Tumour<br>
+			  							<input type="checkbox" name="causes" id="AI" value="AIDS/HIV">AIDS/HIV<br>
 		  							</div>
 								</div>
 							</div>
@@ -444,28 +737,26 @@
 						<div id="E">
 							<h3>Emergency Department visits : </strong><span id="emer">#</span></h3>
 							<div class="row">
-								<div class="col-60">
-									<label for="dor">Emergency Department visits (6 months)</label>
+								<div class="col-70">
+									<label for="emergencyVisits">Emergency Department visits (6 months)</label>
 								</div>
-								<div class="col-40">
-										<input type="number" name="dor"><br>
+								<div class="col-30">
+										<input type="text" name="emergencyVisits" value="" placeholder="Range 0-6" style="width: 130px;"><br>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
-				</div> 
-				<!-- LACE BLOCK CLOSE -->
-				<!-- HOSPITAL BLOCK START -->
-				<div>
+					<!-- LACE BLOCK CLOSE -->
+					<!-- HOSPITAL BLOCK OPEN -->
 					<div id="hospital">
 						<h2>HOSPITAL : </strong><span id="hospitalScore">#</span></h2>
 						<div id="H">
 							<h3>Haemoglobin Level : </h3>
 							<div class="row">
-								<div class="col-50">
+								<div class="col-65">
 									<label for="doa">Haemoglobin Level @ Discharge</label>
 								</div>
-								<div class="col-50">
+								<div class="col-35">
 									<input type="text" name="doa" id="start_date"><span style="margin-left:10px;">g/l</span><br>
 								</div>
 							</div>	
@@ -473,11 +764,11 @@
 						<div id="O">
 							<h3>Oncology Service : </h3>
 							<div class="row">
-								<div class="col-50">
+								<div class="col-65">
 									<label for="doa">Oncology Service before Discharge</label>
 								</div>
-								<div class="col-50">
-									<input type="radio" name="yes_no">Yes</input>
+								<div class="col-35">
+									<input type="radio" name="yes_no">Yes</input>&nbsp;&nbsp;&nbsp;
 									<input type="radio" name="yes_no">No</input>
 								</div>
 							</div>	
@@ -485,10 +776,10 @@
 						<div id="S">
 							<h3>Sodium Level : </h3>
 							<div class="row">
-								<div class="col-50">
+								<div class="col-65">
 									<label for="doa">Sodium Level @ Discharge</label>
 								</div>
-								<div class="col-50">
+								<div class="col-35">
 									<input type="text" name="doa" id="start_date"><span style="margin-left:10px;">mmol/l</span><br>
 								</div>
 							</div>	
@@ -500,110 +791,108 @@
 									<label for="doa">Procedures during the index hospitalisation</label>
 								</div>
 								<div class="col-35">
-									<input type="text" name="doa" id="start_date"><br>
+									<input type="radio" name="yes_no">Yes</input>&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="yes_no">No</input>
 								</div>
 							</div>	
 						</div>
-						<div id="IT" style="background:springgreen">
+						<div id="IT" style="background:gainsboro">
 							<h3>Index Admission Type : </h3>
 							<div class="row">
 								<div class="col-65">
 									<label>Admitted via Emergency Department ?</label>
 								</div>
 								<div class="col-35">
-									<input type="radio" name="yes_no">Yes</input>
-									<input type="radio" name="yes_no">No</input>
+									<input type="radio" name="AdmissionType" value="Y" disabled>Yes</input>&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="AdmissionType" value="N" disabled>No</input>
 								</div>
 							</div>	
 						</div>
-						<div id="A" style="background:springgreen">
+						<div id="A" style="background:gainsboro">
 							<h3>Admission History : </h3>
 							<div class="row">
 								<div class="col-65">
 									<label for="dor">Number of hospitalizations (12 months)</label>
 								</div>
 								<div class="col-35"">
-										<input type="number" name="dor" readonly="" placeholder="Autoload from PHH"><br>
+										<input type="text" name="hospitalVisits" readonly="" placeholder="Autoload from PHH"><br>
 								</div>
 							</div>	
 						</div>
-						<div id="L" style="background:springgreen">
+						<div id="L" style="background:gainsboro">
 							<h3>Length of Stay : </h3>
 							<div class="row">
 								<div class="col-65">
 									<label for="dor">Length of Stay : </label>
 								</div>
 								<div class="col-35">
-										<input type="number" name="dor" readonly="" placeholder="Autoload from LACE"><br>
+										<input type="text" name="lenOfVisit" readonly="" placeholder="Autoload from LACE"><br>
 								</div>
 							</div>	
 						</div>
 					</div>
+					<!-- HOSPITAL BLOCK CLOSE -->	
 				</div>
-				<!-- HOSPITAL BLOCK END -->
-				<br>
-				<div id="VI">
-					<h3>Vital information</h3>
+				<!-- SECOND ROW CLOSE -->
 
-					<h4>On Day 1 of Admission</h4>
-					<div>
-						<div class="col-60">
-							<label for="dor">Predicted symptoms identified by doctors</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="dor"><br>
-						</div>
+				<!-- THIRD ROW OPEN -->
+				<div id="third-row">
+					<!-- VI BLOCK OPEN -->
+					<div id="VI">
+						<h3>Vital information</h3>
 
-						<!-- <div class="col-60">
-							<label for="dor">Medications prescribed</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="dor"><br>
-						</div> -->
-
-						<div class="col-60">
-							<label for="dor">Diagnostic tests performed</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="dor"><br>
-						</div>
-					</div>
-
-					<div id="admissionContainer" class="desc">
-						
-						<div class="row">
-							<h4>On Day 2 of Admission</h4>
-							<div class="col-60">
-								<label for="dor">Symptoms identified</label>
+						<h4>On Day 1 of Admission</h4>
+						<div>
+							<div class="col-70">
+								<label for="dor">Predicted symptoms identified by doctors</label>
 							</div>
-							<div class="col-40">
+							<div class="col-30">
 								<input type="text" name="dor"><br>
 							</div>
 
-							<div class="col-60">
-								<label for="dor">Possible other symptoms</label>
-							</div>
-							<div class="col-40">
-								<input type="text" name="dor"><br>
-							</div>
-
-							<div class="col-60">
+							<div class="col-70">
 								<label for="dor">Diagnostic tests performed</label>
 							</div>
-							<div class="col-40">
+							<div class="col-30">
 								<input type="text" name="dor"><br>
 							</div>
 						</div>
-					</div>
 
-					<input id="btnMore" type="button" value="Add More" />
+						<div id="admissionContainer" class="desc">
+							
+							<div class="row">
+								<h4>On Day 2 of Admission</h4>
+								<div class="col-70">
+									<label for="dor">Symptoms identified</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
 
-					<h4>On Day 'n' (Day Before Release)</h4>
+								<div class="col-70">
+									<label for="dor">Possible other symptoms</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+
+								<div class="col-70">
+									<label for="dor">Diagnostic tests performed</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+							</div>
+						</div>
+
+						<input id="btnMore" type="button" value="Add More" />
+
+						<h4>On Day 'n' (Day Before Release)</h4>
 						<div class="row">
-							<div class="col-60">
+							<div class="col-70">
 								<label for="stat1">Symptoms arrested</label>
 							</div>
-							<div class="col-40">
+							<div class="col-30">
 								<input list="statuses1" name="stat1"><br>
 								<datalist id="statuses1">
 									<option value="Completely cured">
@@ -614,10 +903,10 @@
 						</div>
 
 						<div class="row">
-							<div class="col-60">
+							<div class="col-70">
 								<label for="stat2">Possible other symptoms arrested</label>
 							</div>
-							<div class="col-40">
+							<div class="col-30">
 								<input list="statuses2" name="stat2"><br>
 								<datalist id="statuses2">
 									<option value="Completely cured">
@@ -628,83 +917,88 @@
 						</div>
 
 						<div class="row">
-							<div class="col-60">
+							<div class="col-70">
 								<label for="dor">Diagnostic tests performed</label>
 							</div>
-							<div class="col-40">
+							<div class="col-30">
 								<input type="text" name="dor"><br>
 							</div>
 						</div>
+					</div>
+					<!-- VI BLOCK CLOSE -->
+					<!-- DRA BLOCK OPEN -->
+					<div id="DRA">
+						<h3>Discharge Report Analysis</h3>
+						<div class="row">
+							<div class="col-70">
+								<label for="TC">Final Diagnosis:</label>
+							</div>
+							<div class="col-30">
+								<input type="text" name="TC"><br>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-70">
+								<label for="TC">Procedures:</label>
+							</div>
+							<div class="col-30">
+								<input type="text" name="TC"><br>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-70">
+								<label for="TC">History of Present Illness:</label>
+							</div>
+							<div class="col-30">
+								<input type="text" name="TC"><br>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-70">
+								<label for="TC">Laboratory/Data:</label>
+							</div>
+							<div class="col-30">
+								<input type="text" name="TC"><br>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-70">
+								<label for="TC">Discharge Medications :</label>
+							</div>
+							<div class="col-30">
+								<input type="text" name="TC"><br>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-70">
+								<label for="TC">No. of Medicines to be taken per day:</label>
+							</div>
+							<div class="col-30">
+								<input type="text" name="TC"><br>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-70">
+								<label for="TC">Discharge Instructions:</label>
+							</div>
+							<div class="col-30">
+								<input type="text" name="TC"><br>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-70">
+								<label for="TC">Follow up Appointments :</label>
+							</div>
+							<div class="col-30">
+								<input type="text" name="TC"><br>
+							</div>
+						</div>
+					</div>
+					<!-- DRA BLOCK CLOSE -->
 				</div>
-				<br>
-				<div id="DRA">
-					<h3>Discharge Report Analysis</h3>
-					<div class="row">
-						<div class="col-60">
-							<label for="TC">Final Diagnosis:</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="TC"><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-60">
-							<label for="TC">Procedures:</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="TC"><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-60">
-							<label for="TC">History of Present Illness:</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="TC"><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-60">
-							<label for="TC">Laboratory/Data:</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="TC"><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-60">
-							<label for="TC">Discharge Medications :</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="TC"><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-60">
-							<label for="TC">No. of Medicines to be taken per day:</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="TC"><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-60">
-							<label for="TC">Discharge Instructions:</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="TC"><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-60">
-							<label for="TC">Follow up Appointments :</label>
-						</div>
-						<div class="col-40">
-							<input type="text" name="TC"><br>
-						</div>
-					</div>
-				</div>
-			</div> <!--content div close -->
+				<!-- THIRD ROW CLOSE -->
+
+			</div> <!--CONTENT DIV CLOSE -->
 
 		</div>				
 	</div>
