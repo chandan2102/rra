@@ -160,7 +160,7 @@
 }
 
 #mid-block input{
-	width: 50px;
+	width: 75px;
 }
 #right-block{
 	width: 410px;
@@ -178,12 +178,16 @@
 }
 
 #generic, #habits {
-	width:364px;
+	width:396px;
 	display:inline-block;
 	border: 1px solid gray;
 	margin: 10px 5px;
     padding: 10px;
     border-radius: 5px;
+}
+
+.habitsBlock{
+	display:inline-block;border: 1px solid gray;margin: 10px 5px;padding: 10px;border-radius: 5px;
 }
 
 #pHH, #hPS {
@@ -195,8 +199,8 @@
     border-radius: 5px;
 }
 
-#phh12Container, #phh60Container{
-	width:236px;
+#phh12Container, #phh60Container, #hPS60Container{
+	width:165px;
 	display:inline-block;
 	border: 1px solid gray;
 	margin: 10px 5px;
@@ -217,11 +221,11 @@
 /*SECOND ROW START*/
 
 #second-row{
-	width: 1200px;
+	width: 1225px;
 }
 
 #lace, #hospital{
-	width: 566px;
+	width: 578px;
 	display: inline-block;
 	vertical-align: top;
 
@@ -254,11 +258,11 @@
 /*THIRD ROW START*/
 
 #third-row{
-	width: 1200px;
+	width: 1225px;
 }
 
 #VI, #DRA {
-	width: 566px;
+	width: 578px;
 	display: inline-block;
 	vertical-align: top;
 
@@ -266,6 +270,14 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid gray;
+}
+
+.daysVI {
+	display:inline-block;border: 1px solid gray;margin: 10px 5px;padding: 10px;border-radius: 5px;
+}
+
+.daysVI input{
+	width:150px;
 }
 
 /*THIRD ROW END*/

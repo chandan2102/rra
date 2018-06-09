@@ -46,7 +46,8 @@
 		       	if(val > 0){
 		       		var $container = $("#phh12Container");      		
 		       		for(var i=1;i<=val;i++)
-		       		$container.append('<label for="phh12date ' + $container.children().length + 1 + '">Month :</label><input type="month" id="phh12date ' + $container.children().length + 1 + '"><br>');
+		       		$container.append('<div class="row"><div class="col-50"><label for="phh12date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-50"><input type="month" id="phh12date ' + $container.children().length + 1 + '"></div></div><br>');
+		       	
 					$("#phh12Container").show(1000);
 				}
 		       	else
@@ -59,7 +60,7 @@
 		       	if(val > 0){
 		       		var $container = $("#phh60Container");      		
 		       		for(var i=1;i<=val;i++)
-		       		$container.append('<label for="phh60date ' + $container.children().length + 1 + '">Month :</label><input type="month" id="phh60date ' + $container.children().length + 1 + '"><br>');
+		       		$container.append('<div class="row"><div class="col-50"><label for="phh60date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-50"><input type="month" id="phh60date ' + $container.children().length + 1 + '"></div></div><br>');
 					$("#phh60Container").show(1000);
 				}
 		       	else
@@ -71,7 +72,7 @@
 		       	if(val > 0){
 		       		var $container = $("#hPS60Container");      		
 		       		for(var i=1;i<=val;i++)
-		       		$container.append('<label for="hPS60date ' + $container.children().length + 1 + '">Month :</label><input type="month" id="hPS60date ' + $container.children().length + 1 + '"><br>');
+		       		$container.append('<div class="row"><div class="col-50"><label for="hPS60date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-50"><input type="month" id="hPS60date ' + $container.children().length + 1 + '"></div></div><br>');
 					$("#hPS60Container").show(1000);
 				}
 		       	else
@@ -83,7 +84,7 @@
 	       		var dayNum = $container.find("div.row").length;
 	       		dayNum +=2;
 	       		//console.log("Day Number = "+dayNum);
-	       		$container.append('<div class="row"><h4>On Day ' + dayNum + ' of Admission</h4><div class="col-70"><label for="dor">Symptoms identified</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Possible other symptoms</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Diagnostic tests performed</label></div><div class="col-30"><input type="text" name="dor"><br></div></div>');      		
+	       		$container.append('<div class="daysVI"><div class="row"><h4>On Day ' + dayNum + ' of Admission</h4><div class="col-70"><label for="dor">Symptoms identified</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Possible other symptoms</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Diagnostic tests performed</label></div><div class="col-30"><input type="text" name="dor"><br></div></div></div>');      		
 	   		});
 
 
@@ -665,7 +666,7 @@
 							</div> <!-- GENERIC CLOSE-->
 							<div id="habits">
 								<h4>Habits</h4>
-								<div class=row>
+								<div class="row habitsBlock">
 									<label for="smoker">Smoker ? </label>
 										<input type="radio" name="smoker" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
 										<input type="radio" name="smoker" value="N">No</input>						
@@ -684,7 +685,7 @@
 										</div> 
 								    </div>
 								</div>
-								<div class=row>
+								<div class="row habitsBlock">
 									<label for="alcoholic">Alcoholic ?</label>
 										<input type="radio" name="alcoholic" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
 										<input type="radio" name="alcoholic" value="N">No</input>
@@ -703,7 +704,7 @@
 										</div>
 								    </div>
 								</div>
-								<div class=row>
+								<div class="row habitsBlock">
 									<label for="addiction" >Addicted ? &nbsp;</label>
 										<input type="radio" name="addiction" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
 										<input type="radio" name="addiction" value="N">No</input>
@@ -1030,37 +1031,11 @@
 					<!-- VI BLOCK OPEN -->
 					<div id="VI">
 						<h3>Vital information</h3>
-
-						<h4>On Day 1 of Admission</h4>
-						<div>
-							<div class="col-70">
-								<label for="dor">Predicted symptoms identified by doctors</label>
-							</div>
-							<div class="col-30">
-								<input type="text" name="dor"><br>
-							</div>
-
-							<div class="col-70">
-								<label for="dor">Diagnostic tests performed</label>
-							</div>
-							<div class="col-30">
-								<input type="text" name="dor"><br>
-							</div>
-						</div>
-
-						<div id="admissionContainer" class="desc">
-							
+						<div class="daysVI">
+							<h4>On Day 1 of Admission</h4>
 							<div class="row">
-								<h4>On Day 2 of Admission</h4>
 								<div class="col-70">
-									<label for="dor">Symptoms identified</label>
-								</div>
-								<div class="col-30">
-									<input type="text" name="dor"><br>
-								</div>
-
-								<div class="col-70">
-									<label for="dor">Possible other symptoms</label>
+									<label for="dor">Predicted symptoms identified by doctors</label>
 								</div>
 								<div class="col-30">
 									<input type="text" name="dor"><br>
@@ -1072,48 +1047,78 @@
 								<div class="col-30">
 									<input type="text" name="dor"><br>
 								</div>
-							</div>
-						</div>
-
-						<input id="btnMore" type="button" value="Add More" />
-
-						<h4>On Day 'n' (Day Before Release)</h4>
-						<div class="row">
-							<div class="col-70">
-								<label for="stat1">Symptoms arrested</label>
-							</div>
-							<div class="col-30">
-								<input list="statuses1" name="stat1"><br>
-								<datalist id="statuses1">
-									<option value="Completely cured">
-									<option value="Satisfactory level cured">
-									<option value="Somewhat under control">
-								</datalist>
 							</div>	
 						</div>
 
-						<div class="row">
-							<div class="col-70">
-								<label for="stat2">Possible other symptoms arrested</label>
+						<div id="admissionContainer" class="desc">
+							<div class="daysVI">
+								<div class="row">
+									<h4>On Day 2 of Admission</h4>
+									<div class="col-70">
+										<label for="dor">Symptoms identified</label>
+									</div>
+									<div class="col-30">
+										<input type="text" name="dor"><br>
+									</div>
+
+									<div class="col-70">
+										<label for="dor">Possible other symptoms</label>
+									</div>
+									<div class="col-30">
+										<input type="text" name="dor"><br>
+									</div>
+
+									<div class="col-70">
+										<label for="dor">Diagnostic tests performed</label>
+									</div>
+									<div class="col-30">
+										<input type="text" name="dor"><br>
+									</div>
+								</div>
 							</div>
-							<div class="col-30">
-								<input list="statuses2" name="stat2"><br>
-								<datalist id="statuses2">
-									<option value="Completely cured">
-									<option value="Satisfactory level cured">
-									<option value="Somewhat under control">
-								</datalist>
-							</div>	
 						</div>
 
-						<div class="row">
-							<div class="col-70">
-								<label for="dor">Diagnostic tests performed</label>
-							</div>
-							<div class="col-30">
-								<input type="text" name="dor"><br>
-							</div>
-						</div>
+						<input id="btnMore" type="button" value="Add More" style="margin-left:5px"/>
+
+						<div class="daysVI">
+							<h4>On Day Before Release</h4>
+							<!-- <div class="row"> -->
+								<div class="col-70">
+									<label for="stat1">Symptoms arrested</label>
+								</div>
+								<div class="col-30">
+									<input list="statuses1" name="stat1"><br>
+									<datalist id="statuses1">
+										<option value="Completely cured">
+										<option value="Satisfactory level cured">
+										<option value="Somewhat under control">
+									</datalist>
+								</div>	
+							<!-- </div> -->
+
+							<!-- <div class="row"> -->
+								<div class="col-70">
+									<label for="stat2">Possible other symptoms arrested</label>
+								</div>
+								<div class="col-30">
+									<input list="statuses2" name="stat2"><br>
+									<datalist id="statuses2">
+										<option value="Completely cured">
+										<option value="Satisfactory level cured">
+										<option value="Somewhat under control">
+									</datalist>
+								</div>	
+							<!-- </div> -->
+
+							<!-- <div class="row"> -->
+								<div class="col-70">
+									<label for="dor">Diagnostic tests performed</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+							<!-- </div> -->
+						</div>	
 					</div>
 					<!-- VI BLOCK CLOSE -->
 					<!-- DRA BLOCK OPEN -->
