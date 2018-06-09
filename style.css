@@ -3,6 +3,10 @@
 	margin:0px;
 }
 
+input{
+	border-radius: 4px;
+}
+
 @font-face {
   font-family: Montserrat;
   src:  url('fonts/Montserrat-Regular.ttf');
@@ -187,7 +191,7 @@
 }
 
 .habitsBlock{
-	display:inline-block;border: 1px solid gray;margin: 10px 5px;padding: 10px;border-radius: 5px;
+	width: 362px;display:inline-block;border: 1px solid gray;margin: 10px 5px;padding: 10px;border-radius: 5px;
 }
 
 #pHH, #hPS {

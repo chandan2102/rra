@@ -47,7 +47,7 @@
 		       		var $container = $("#phh12Container");      		
 		       		for(var i=1;i<=val;i++)
 		       		$container.append('<div class="row"><div class="col-50"><label for="phh12date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-50"><input type="month" id="phh12date ' + $container.children().length + 1 + '"></div></div><br>');
-		       	
+
 					$("#phh12Container").show(1000);
 				}
 		       	else
@@ -666,10 +666,17 @@
 							</div> <!-- GENERIC CLOSE-->
 							<div id="habits">
 								<h4>Habits</h4>
-								<div class="row habitsBlock">
-									<label for="smoker">Smoker ? </label>
-										<input type="radio" name="smoker" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="smoker" value="N">No</input>						
+								<div class="habitsBlock">
+									<div class="row">
+										<div class="col-50">
+											<label for="smoker">Smoker ? </label>
+										</div>
+										<div class="col-50">
+											<input type="radio" name="smoker" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="smoker" value="N">No</input>
+										</div>
+									</div>
+															
 									<div id="smokerDesc" class="desc" style="display: none;">
 										<div class="col-50">
 											<label for="smokeYears">For how many years ?</label>
@@ -685,10 +692,17 @@
 										</div> 
 								    </div>
 								</div>
-								<div class="row habitsBlock">
-									<label for="alcoholic">Alcoholic ?</label>
-										<input type="radio" name="alcoholic" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="alcoholic" value="N">No</input>
+								<div class="habitsBlock">
+									<div class="row">
+										<div class="col-50">
+											<label for="alcoholic">Alcoholic ?</label>
+										</div>
+										<div class="col-50">
+											<input type="radio" name="alcoholic" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="alcoholic" value="N">No</input>
+										</div>
+									</div>
+
 									<div id="alcoholicDesc" class="desc" style="display: none;">
 										<div class="col-50">
 											<label for="alcoholYears">For how many years ?</label>
@@ -704,10 +718,17 @@
 										</div>
 								    </div>
 								</div>
-								<div class="row habitsBlock">
-									<label for="addiction" >Addicted ? &nbsp;</label>
-										<input type="radio" name="addiction" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="addiction" value="N">No</input>
+								<div class="habitsBlock">
+									<div class="row">
+										<div class="col-50">
+											<label for="addiction" >Addicted ? &nbsp;</label>
+										</div>
+										<div class="col-50">
+											<input type="radio" name="addiction" value="Y">Yes</input>&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="addiction" value="N">No</input>
+										</div>
+									</div>
+										
 									<div id="addictionDesc" class="desc" style="display: none;">
 										<div class="col-50">
 											<label for="addictionYears">For how many years ?</label>
@@ -953,7 +974,7 @@
 							</div>	
 						</div>
 						<div id="O">
-							<h3>Oncology Service : <span id="onco">#</span><h3>
+							<h3>Oncology Service : <span id="oncoonco">#</span></h3>
 							<div class="row">
 								<div class="col-65">
 									<label for="oncology">Oncology Service before Discharge</label>
@@ -988,7 +1009,7 @@
 							</div>	
 						</div>
 						<div id="IT" style="background:gainsboro">
-							<h3>Index Admission Type : </h3>
+							<h3>Index admission Type : </h3>
 							<div class="row">
 								<div class="col-65">
 									<label>Admitted via Emergency Department ?</label>
