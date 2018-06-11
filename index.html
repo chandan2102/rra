@@ -85,8 +85,7 @@
 	       		dayNum +=2;
 	       		//console.log("Day Number = "+dayNum);
 	       		$container.append('<div class="daysVI"><div class="row"><h4>On Day ' + dayNum + ' of Admission</h4><div class="col-70"><label for="dor">Symptoms identified</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Possible other symptoms</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Diagnostic tests performed</label></div><div class="col-30"><input type="text" name="dor"><br></div></div></div>');      		
-	   		});
-
+	   			});
 
 			/*$('#end_date').change(function() {
 				var start = $('#start_date').val();
@@ -450,6 +449,9 @@
 		    	$("input[name=lenOfVisit]").val(lenOfStay);
 				document.getElementById("lenOfStay").textContent = lenOfStay;
 
+				if( lenOfStay - 1 > 0)
+				document.getElementById("dayBefore").textContent = lenOfStay - 1;
+
 		    	// L VALUE CALCULATION
 		    	if(lenOfStay<=3)
 					L = parseInt(lenOfStay);
@@ -460,6 +462,33 @@
 				else
 					L = 7;
 				//LENGTH OF STAY CLOSE
+
+				var numDays = ($("#admissionContainer").find("div.row").length)+1;
+				console.log("On day "+numDays+"of Admission");
+
+				if(numDays == lenOfStay - 2)
+					$("#btnMore").hide(1000);
+				else
+					$("#btnMore").show(1000);
+	   			
+
+	   			if(lenOfStay >=1 && lenOfStay <=2){
+	   				$("#VI1").show(1000);
+	   				$("#VI2").hide(1000);
+	   				$("#VI3").hide(1000);
+	   			}
+
+	   			if(lenOfStay ==3){
+	   				$("#VI1").hide(1000);
+	   				$("#VI2").show(1000);
+	   				$("#VI3").hide(1000);
+	   			}
+
+	   			if(lenOfStay >=4){
+	   				$("#VI1").hide(1000);
+	   				$("#VI2").hide(1000);
+	   				$("#VI3").show(1000);
+	   			}
 
 		    	//ACUITY AND A CALCULATION OPEN
 		    	document.getElementById("acuity").textContent = 0;
@@ -871,8 +900,10 @@
 							</div>	
 						</div>
 					</div>
-				</div> <!-- FIRST ROW CLOSE-->
+				</div>
+				<!-- FIRST ROW CLOSE-->
 
+				<!-- SECOND ROW OPEN -->
 				<div id="second-row">
 					<!-- LACE BLOCK OPEN -->
 					<div id="lace">
@@ -1049,8 +1080,151 @@
 
 				<!-- THIRD ROW OPEN -->
 				<div id="third-row">
-					<!-- VI BLOCK OPEN -->
-					<div id="VI">
+					<!-- FIRST VI BLOCK OPEN -->
+					<div id="VI1" style="display:none">
+						<h3>Vital information</h3>
+						<div class="daysVI">
+							<h4>On Day 1 of Admission</h4>
+							<div class="row">
+								<div class="col-70">
+									<label for="dor">Predicted symptoms identified by doctors</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+
+								<div class="col-70">
+									<label for="dor">Diagnostic tests performed</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+
+								<div class="col-70">
+									<label for="dor">Symptoms identified</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+
+								<div class="col-70">
+									<label for="dor">Possible other symptoms</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+
+								<div class="col-70">
+									<label for="stat1">Symptoms arrested</label>
+								</div>
+								<div class="col-30">
+									<input list="statuses1" name="stat1"><br>
+									<datalist id="statuses1">
+										<option value="Completely cured">
+										<option value="Satisfactory level cured">
+										<option value="Somewhat under control">
+									</datalist>
+								</div>
+
+								<div class="col-70">
+									<label for="stat2">Possible other symptoms arrested</label>
+								</div>
+								<div class="col-30">
+									<input list="statuses2" name="stat2"><br>
+									<datalist id="statuses2">
+										<option value="Completely cured">
+										<option value="Satisfactory level cured">
+										<option value="Somewhat under control">
+									</datalist>
+								</div>
+								
+								<div class="col-70">
+									<label for="dor">Diagnostic tests performed</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>	
+
+							</div>	
+						</div>
+					</div>
+					<!-- FIRST VI BLOCK CLOSE -->
+					<!-- SECOND VI BLOCK OPEN -->
+					<div id="VI2" style="display:none">
+						<h3>Vital information</h3>
+						<div class="daysVI">
+							<h4>On Day 1 of Admission</h4>
+							<div class="row">
+								<div class="col-70">
+									<label for="dor">Predicted symptoms identified by doctors</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+
+								<div class="col-70">
+									<label for="dor">Diagnostic tests performed</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+							</div>	
+						</div>
+
+
+						<div class="daysVI">
+							<div class="row">
+								<h4>On Day 2 of Admission</h4>
+								<div class="col-70">
+									<label for="dor">Symptoms identified</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+
+								<div class="col-70">
+									<label for="dor">Possible other symptoms</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+
+								<div class="col-70">
+									<label for="stat1">Symptoms arrested</label>
+								</div>
+								<div class="col-30">
+									<input list="statuses1" name="stat1"><br>
+									<datalist id="statuses1">
+										<option value="Completely cured">
+										<option value="Satisfactory level cured">
+										<option value="Somewhat under control">
+									</datalist>
+								</div>
+
+								<div class="col-70">
+									<label for="stat2">Possible other symptoms arrested</label>
+								</div>
+								<div class="col-30">
+									<input list="statuses2" name="stat2"><br>
+									<datalist id="statuses2">
+										<option value="Completely cured">
+										<option value="Satisfactory level cured">
+										<option value="Somewhat under control">
+									</datalist>
+								</div>
+
+								<div class="col-70">
+									<label for="dor">Diagnostic tests performed</label>
+								</div>
+								<div class="col-30">
+									<input type="text" name="dor"><br>
+								</div>
+							</div>
+						</div>	
+					</div>
+					<!-- SECOND VI BLOCK CLOSE -->
+					<!-- THIRD VI BLOCK OPEN -->
+					<div id="VI3" style="display:none">
 						<h3>Vital information</h3>
 						<div class="daysVI">
 							<h4>On Day 1 of Admission</h4>
@@ -1102,7 +1276,7 @@
 						<input id="btnMore" type="button" value="Add More" style="margin-left:5px"/>
 
 						<div class="daysVI">
-							<h4>On Day Before Release</h4>
+							<h4>On Day : <span id="dayBefore">#</span> (Day Before Release)</h4>
 							<!-- <div class="row"> -->
 								<div class="col-70">
 									<label for="stat1">Symptoms arrested</label>
@@ -1141,7 +1315,8 @@
 							<!-- </div> -->
 						</div>	
 					</div>
-					<!-- VI BLOCK CLOSE -->
+					<!-- THIRD VI BLOCK CLOSE -->
+					
 					<!-- DRA BLOCK OPEN -->
 					<div id="DRA">
 						<h3>Discharge Report Analysis</h3>
