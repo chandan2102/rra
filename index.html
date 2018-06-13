@@ -327,7 +327,7 @@
 		    		H = 0;
 		    	
 
-		    	console.log("H="+H);
+		    	//console.log("H="+H);
 		    	//HAEMOGLOBIN CALCULATION CLOSE
 
 		    	//ONCOLOGY CALCULATION OPEN
@@ -340,7 +340,7 @@
 		    		/*document.getElementById("onco").textContent = "NO";*/
 		    	}
 
-		    	console.log("O="+O);
+		    	//console.log("O="+O);
 		    	//ONCOLOGY CALCULATION CLOSE
 
 		    	//SODIUM CALCULATION OPEN
@@ -360,7 +360,7 @@
 		    	if (SodCount == "")
 		    		S = 0;
 		    	
-		    	console.log("S="+S);
+		    	//console.log("S="+S);
 		    	//SODIUM CALCULATION OPEN
 
 		    	//PROCEDURE CALCULATION OPEN
@@ -373,7 +373,7 @@
 		    		//document.getElementById("proce").textContent = "NO";
 		    	}
 
-		    	console.log("P="+P);
+		    	//console.log("P="+P);
 		    	//PROCEDURE CALCULATION CLOSE
 
 		    	//INDEX ADMISSION CALCULATION OPEN
@@ -386,7 +386,7 @@
 		    		/*document.getElementById("onco").textContent = "NO";*/
 		    	}
 
-		    	console.log("IT="+IT);
+		    	//console.log("IT="+IT);
 		    	//INDEX ADMISSION CALCULATION CLOSE
 
 		    	//ADMISSION HISTORY CALCULATION OPEN
@@ -408,7 +408,7 @@
 		    	/*if (admhis > 5)
 		    		AH = 5;*/
 		    	
-		    	console.log("AH="+AH);
+		    	//console.log("AH="+AH);
 		    	//ADMISSION HISTORY CALCULATION CLOSE
 
 
@@ -427,7 +427,7 @@
 		    	else if(lenOV < 5)
 		    		LS = 0;
 		    	
-		    	console.log("LS="+LS);
+		    	//console.log("LS="+LS);
 		    	//LENGTH OF VISIT (HOSPITAL) CALCULATION CLOSE		    	
 
 
@@ -464,7 +464,7 @@
 				//LENGTH OF STAY CLOSE
 
 				var numDays = ($("#admissionContainer").find("div.row").length)+1;
-				console.log("On day "+numDays+"of Admission");
+				//console.log("On day "+numDays+"of Admission");
 
 				if(numDays == lenOfStay - 2)
 					$("#btnMore").hide(1000);
