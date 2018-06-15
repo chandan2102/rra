@@ -281,7 +281,11 @@ input{
 }
 
 .daysVI input{
-	width:150px;
+	width:140px;
+}
+
+#DRA input{
+	width:140px;
 }
 
 /*THIRD ROW END*/
