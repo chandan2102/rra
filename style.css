@@ -39,18 +39,12 @@ input{
 	}
 }
 
-#home{
+/*#home{
 	height:10px;
 	width:100%;
 	padding: 20px 0px;
 	border: 0px solid red;
-}
-
-#logo{
-	height: 64px;
-	width: 66px;
-	padding-left: 10px;
-}
+}*/
 
 #main{
 	background-color: white;
@@ -59,12 +53,19 @@ input{
 	border-radius:15px;
 	margin: 0 auto;
 	padding-bottom: 7px;
+	margin-top: 50px;
 }
 
-#header{
+#logo{
+	height: 64px;
+	width: 66px;
+	padding: 10px 0px 0px 10px;
+}
+
+/*#header{
 	width: 400px;
 	padding: 5px 0px;
-}
+}*/
 
 #header-text-container{
 	height: 5px;
@@ -78,19 +79,16 @@ input{
 #head1{
 	width: 142px;
     margin-top: -60px;
-    margin-left: 436px;
-	margin-bottom: 0px;
-
-	text-align: center;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 14px;
-	font-weight: 900;
-	
-	letter-spacing: 4px;
-	color: lightgrey;
-
-	display: block;
-	border: 0px solid red;
+    margin-left: 410px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: lightgrey;
+    display: block;
+    border: 0px solid red;
 }
 
 #head2{
@@ -123,7 +121,7 @@ input{
 
 #eadmission{
 	margin: 0px 0px 0px 5px;
-	font-variant: small-caps;
+	/*font-variant: small-caps;*/
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 75px;
