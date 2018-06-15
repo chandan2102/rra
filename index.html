@@ -100,7 +100,9 @@
 	       		var dayNum = $container.find("div.row").length;
 	       		dayNum +=2;
 	       		//console.log("Day Number = "+dayNum);
-	       		$container.append('<div class="daysVI"><div class="row"><h4>On Day ' + dayNum + ' of Admission</h4><div class="col-70"><label for="dor">Symptoms identified</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Possible other symptoms</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Diagnostic tests performed</label></div><div class="col-30"><input type="text" name="dor"><br></div></div></div>');      		
+	       		$container.append('<div class="daysVI" id="day' + dayNum + '" style="display: none;"><div class="row"><h4>On Day ' + dayNum + ' of Admission</h4><div class="col-70"><label for="dor">Symptoms identified</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Possible other symptoms</label></div><div class="col-30"><input type="text" name="dor"><br></div><div class="col-70"><label for="dor">Diagnostic tests performed</label></div><div class="col-30"><input type="text" name="dor"><br></div></div></div>');
+    
+	       		$(".daysVI").show(1000);		
 	   			});
 
 			/*$('#end_date').change(function() {
