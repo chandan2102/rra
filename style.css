@@ -31,6 +31,13 @@ input{
 	overflow: hidden;
 }
 
+@media only screen and (max-device-width: 480px) {
+  /* define mobile specific styles come here */
+  .wrapper{
+	width: 130%;
+	}
+}
+
 #home{
 	height:10px;
 	width:100%;
