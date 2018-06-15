@@ -4,7 +4,21 @@
 }
 
 input{
+	border: 1px solid white;
 	border-radius: 4px;
+     
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+            
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
 }
 
 @font-face {
@@ -210,12 +224,24 @@ input{
 }
 
 #phh12Container, #phh60Container, #hPS60Container{
-	width:165px;
+	width:260px;
 	display:inline-block;
 	border: 1px solid gray;
 	margin: 10px 5px;
     padding: 10px;
     border-radius: 5px;
+}
+
+#phh12Container input{
+	width: 160px;
+}
+
+#phh60Container input{
+	width: 160px;
+}
+
+#hPS60Container input{
+	width: 160px;
 }
 
 #smokerDesc, #alcoholicDesc, #addictionDesc{
@@ -368,3 +394,4 @@ input{
 h3, h4{
 	padding: 5px 0px;
 }
+

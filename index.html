@@ -3,7 +3,7 @@
 <head>
 	<title>Readmission Risk Analysis</title>
 	<link rel="icon" href="images/rra-logo.png" type="image/png" sizes="16x16">
-	<link rel="stylesheet" type="text/css" href="style.css??ver.0.0.13"/>
+	<link rel="stylesheet" type="text/css" href="style.css??ver.0.0.14"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 
@@ -62,7 +62,7 @@
 		       	if(val > 0){
 		       		var $container = $("#phh12Container");      		
 		       		for(var i=1;i<=val;i++)
-		       		$container.append('<div class="row"><div class="col-50"><label for="phh12date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-50"><input type="month" id="phh12date ' + $container.children().length + 1 + '"></div></div><br>');
+		       		$container.append('<div class="row"><div class="col-35"><label for="phh12date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-65"><input type="month" id="phh12date ' + $container.children().length + 1 + '"></div></div><br>');
 
 					$("#phh12Container").show(1000);
 				}
@@ -76,7 +76,7 @@
 		       	if(val > 0){
 		       		var $container = $("#phh60Container");      		
 		       		for(var i=1;i<=val;i++)
-		       		$container.append('<div class="row"><div class="col-50"><label for="phh60date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-50"><input type="month" id="phh60date ' + $container.children().length + 1 + '"></div></div><br>');
+		       		$container.append('<div class="row"><div class="col-35"><label for="phh60date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-65"><input type="month" id="phh60date ' + $container.children().length + 1 + '"></div></div><br>');
 					$("#phh60Container").show(1000);
 				}
 		       	else
@@ -88,7 +88,7 @@
 		       	if(val > 0){
 		       		var $container = $("#hPS60Container");      		
 		       		for(var i=1;i<=val;i++)
-		       		$container.append('<div class="row"><div class="col-50"><label for="hPS60date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-50"><input type="month" id="hPS60date ' + $container.children().length + 1 + '"></div></div><br>');
+		       		$container.append('<div class="row"><div class="col-35"><label for="hPS60date ' + $container.children().length + 1 + '">Month :</label></div><div class="col-65"><input type="month" id="hPS60date ' + $container.children().length + 1 + '"></div></div><br>');
 					$("#hPS60Container").show(1000);
 				}
 		       	else
@@ -834,7 +834,7 @@
 								</div>
 								<div class="col-20">
 									<!-- <input type="text" name="nature"><br> -->
-									<input list="nature" name="ethnicity"><br>
+									<input list="nature" name="nature"><br>
 										<datalist id="nature">
 											<option value="Minor">
 											<option value="Moderate">
